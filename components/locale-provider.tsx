@@ -5,20 +5,20 @@ import { LanguageModal } from "@/components/language-modal";
 import { translations } from "@/translations";
 import { Loading } from "@/components/loading";
 
-type Locale = "tr" | "en";
+type Locale = "tr" | "en" | "zh" | "ar" | "ru";
 
 const LocaleContext = createContext<{
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: keyof typeof translations.tr) => string;
 }>({
-  locale: "tr",
+  locale: "en",
   setLocale: () => {},
   t: () => "",
 });
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("tr");
+  const [locale, setLocale] = useState<Locale>("en");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -36,7 +36,8 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: keyof typeof translations.tr) => {
-    return translations[locale][key];
+    // @ts-ignore // TODO: Fix this
+    return translations[locale][key] || translations["en"][key] || key;
   };
 
   if (isLoading) {
