@@ -13,14 +13,6 @@ export default function IndexPage() {
 
   const { t } = useLocale();
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    if (file) {
-      console.log("Selected file:", file);
-    }
-  };
-
   const startCamera = async () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -81,10 +73,7 @@ export default function IndexPage() {
             <p className="text-lg text-default-600">{t("description")}</p>
           </div>
 
-          <UploadCard
-            onImageUpload={handleImageUpload}
-            onStartCamera={startCamera}
-          />
+          <UploadCard />
           <div className="text-center text-default-500 text-sm">
             <LanguageButton />
           </div>

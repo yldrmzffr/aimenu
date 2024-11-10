@@ -17,6 +17,9 @@ export const translations = {
     askAboutMenu: "Ask about the menu",
     chatWelcomeMessage: "Hello! How can I help you with the menu?",
     menuItems: "Menu Items",
+    socketConnectionError:
+      "Socket connection is not available! Please try again.",
+    uploadFailed: "Error! Please try again.",
   },
   tr: {
     title: "AiMenu",
@@ -37,6 +40,9 @@ export const translations = {
     chatWelcomeMessage:
       "Merhaba! Menüdeki yemekler hakkında nasıl yardımcı olabilirim?",
     menuItems: "Menü İçeriği",
+    socketConnectionError:
+      "Soket bağlantısı mevcut değil! Lütfen tekrar deneyin.",
+    uploadFailed: "Hata! Lütfen tekrar deneyin.",
   },
   zh: {
     title: "AiMenu",
@@ -55,6 +61,8 @@ export const translations = {
     askAboutMenu: "询问菜单",
     chatWelcomeMessage: "你好！我如何帮助你查看菜单？",
     menuItems: "菜单项目",
+    socketConnectionError: "套接字连接不可用！请重试。",
+    uploadFailed: "错误！请重试。",
   },
   ar: {
     title: "AiMenu",
@@ -74,6 +82,8 @@ export const translations = {
     askAboutMenu: "اسأل عن القائمة",
     chatWelcomeMessage: "مرحبًا! كيف يمكنني مساعدتك في القائمة؟",
     menuItems: "عناصر القائمة",
+    socketConnectionError: "اتصال المقبس غير متوفر! يرجى المحاولة مرة أخرى.",
+    uploadFailed: "خطأ! يرجى المحاولة مرة أخرى.",
   },
   ru: {
     title: "AiMenu",
@@ -93,5 +103,8 @@ export const translations = {
     askAboutMenu: "Задать вопрос о меню",
     chatWelcomeMessage: "Привет! Как я могу помочь вам с меню?",
     menuItems: "Элементы меню",
+    socketConnectionError:
+      "Соединение с сокетом недоступно! Пожалуйста, попробуйте еще раз.",
+    uploadFailed: "Ошибка! Пожалуйста, попробуйте еще раз.",
   },
 };

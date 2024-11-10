@@ -8,6 +8,8 @@ import { fontSans, fontMono } from "@/config/fonts";
 import "@/styles/globals.css";
 import { LocaleProvider } from "@/components/locale-provider";
 
+import { Toaster } from "sonner";
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
@@ -15,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <NextUIProvider navigate={router.push}>
       <NextThemesProvider>
         <LocaleProvider>
+          <Toaster richColors position="bottom-center" />
           <Component {...pageProps} />
         </LocaleProvider>
       </NextThemesProvider>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { Button } from "@nextui-org/button";
 import { MessageCircle } from "lucide-react";
 
@@ -11,6 +12,8 @@ import DefaultLayout from "@/layouts/default";
 import { useLocale } from "@/components/locale-provider";
 
 export default function MenuDetailPage() {
+  const router = useRouter();
+  const { id } = router.query;
   const { t } = useLocale();
   const { menuItems } = useMenuData();
   const chat = useChat(t("chatWelcomeMessage"));

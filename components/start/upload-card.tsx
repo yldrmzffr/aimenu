@@ -1,16 +1,61 @@
 import { Card, CardBody } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
-import { BiCloudUpload, BiCamera } from "react-icons/bi";
+import { BiCloudUpload } from "react-icons/bi";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { toast } from "sonner";
 
 import { useLocale } from "@/components/locale-provider";
+import { useSocket } from "@/hooks/use-socket";
 
-type UploadCardProps = {
-  onStartCamera: () => void;
-  onImageUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-export function UploadCard({ onStartCamera, onImageUpload }: UploadCardProps) {
+export function UploadCard() {
+  const [loading, setLoading] = useState(false);
+  const socket = useSocket();
+  const router = useRouter();
   const { t } = useLocale();
+
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    setLoading(true);
+
+    // Socket bağlantısı kontrolü
+    if (!socket?.connected) {
+      console.error("Socket connection is not available");
+      toast.error(t("socketConnectionError"));
+      setLoading(false);
+
+      return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("image", file);
+
+    try {
+      socket.emit("start-upload", { fileName: file.name });
+
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) throw new Error("Upload failed");
+
+      const data = await response.json();
+
+      router.push(`/menu/${data.menuId}/detail`);
+    } catch (error) {
+      toast.error(t("uploadFailed"));
+      console.error("Upload error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Card className="border-2 border-dashed border-default-200">
@@ -23,20 +68,18 @@ export function UploadCard({ onStartCamera, onImageUpload }: UploadCardProps) {
           <div className="flex flex-col w-full gap-2 max-w-[200px]">
             <Button
               color="primary"
+              isLoading={loading}
               size="lg"
               startContent={<BiCloudUpload />}
               onClick={() => document.getElementById("fileInput")?.click()}
             >
               {t("selectImage")}
             </Button>
-            <Button
-              color="secondary"
-              size="lg"
-              startContent={<BiCamera />}
-              onClick={onStartCamera}
-            >
+            {/*
+              <Button color="secondary" size="lg" startContent={<BiCamera />}>
               {t("takePhoto")}
-            </Button>
+              </Button>
+            */}
           </div>
 
           <input
@@ -44,7 +87,7 @@ export function UploadCard({ onStartCamera, onImageUpload }: UploadCardProps) {
             className="hidden"
             id="fileInput"
             type="file"
-            onChange={onImageUpload}
+            onChange={handleImageUpload}
           />
           <p className="text-xs text-default-400">{t("maxSize")}</p>
         </div>
