@@ -1,11 +1,10 @@
 import { useState, useRef } from "react";
 
-import { UploadCard } from "./components/upload-card";
-import { CameraModal } from "./components/camera-modal";
-
+import { UploadCard } from "@/components/start/upload-card";
+import { CameraModal } from "@/components/start/camera-modal";
 import DefaultLayout from "@/layouts/default";
 import { useLocale } from "@/components/locale-provider";
-import LanguageButton from "@/pages/start/components/language-button";
+import LanguageButton from "@/components/start/language-button";
 
 export default function IndexPage() {
   const videoRef = useRef<HTMLVideoElement>(null);

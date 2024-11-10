@@ -2,12 +2,11 @@ import { useState } from "react";
 import { Button } from "@nextui-org/button";
 import { MessageCircle } from "lucide-react";
 
-import { MenuItemCard } from "./components/menu-item-card";
-import { MenuSearch } from "./components/menu-search";
-import { ChatModal } from "./components/chat-modal";
-import { useMenuData } from "./hooks/use-menu-data";
-import { useChat } from "./hooks/use-chat";
-
+import { MenuItemCard } from "@/components/menu/menu-item-card";
+import { MenuSearch } from "@/components/menu/menu-search";
+import { ChatModal } from "@/components/menu/chat-modal";
+import { useMenuData } from "@/hooks/use-menu-data";
+import { useChat } from "@/hooks/use-chat";
 import DefaultLayout from "@/layouts/default";
 import { useLocale } from "@/components/locale-provider";
 
