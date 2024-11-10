@@ -20,7 +20,7 @@ export function UploadCard({ onStartCamera, onImageUpload }: UploadCardProps) {
           <h3 className="text-xl font-semibold">{t("uploadTitle")}</h3>
           <p className="text-default-500">{t("formats")}</p>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col w-full gap-2 max-w-[200px]">
             <Button
               color="primary"
               size="lg"

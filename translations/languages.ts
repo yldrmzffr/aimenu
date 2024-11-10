@@ -37,3 +37,7 @@ export const Languages: LANGUAGE[] = [
     flag: "🇷🇺",
   },
 ];
+
+export const getLanguage = (key: string) => {
+  return Languages.find((lang) => lang.key === key) || Languages[0];
+};

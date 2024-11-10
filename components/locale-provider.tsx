@@ -30,14 +30,14 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(false);
   }, []);
 
-  const handleSetLocale = (newLocale: Locale) => {
-    setLocale(newLocale);
+  const handleSetLocale = (newLocale: string) => {
+    setLocale(newLocale as Locale);
     localStorage.setItem("locale", newLocale);
   };
 
-  const t = (key: keyof typeof translations.tr) => {
+  const t = (key: string) => {
     // @ts-ignore // TODO: Fix this
-    return translations[locale][key] || translations["en"][key] || key;
+    return translations[locale][key] || key;
   };
 
   if (isLoading) {

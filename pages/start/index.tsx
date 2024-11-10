@@ -5,6 +5,7 @@ import { CameraModal } from "./components/camera-modal";
 
 import DefaultLayout from "@/layouts/default";
 import { useLocale } from "@/components/locale-provider";
+import LanguageButton from "@/pages/start/components/language-button";
 
 export default function IndexPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -85,6 +86,9 @@ export default function IndexPage() {
             onImageUpload={handleImageUpload}
             onStartCamera={startCamera}
           />
+          <div className="text-center text-default-500 text-sm">
+            <LanguageButton />
+          </div>
         </div>
       </div>
 
