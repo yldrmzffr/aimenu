@@ -14,13 +14,9 @@ import { useLocale } from "@/components/locale-provider";
 export default function MenuDetailPage() {
   const router = useRouter();
   const { id: menuId } = router.query;
-
   const { t } = useLocale();
-
-  const { menuItems, isConnected } = useMenuData(menuId as string);
-
+  const { menuItems } = useMenuData(menuId as string);
   const chat = useChat(t("chatWelcomeMessage"));
-
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredMenuItems = menuItems.filter(
@@ -29,21 +25,6 @@ export default function MenuDetailPage() {
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.category.toLowerCase().includes(searchQuery.toLowerCase()),
   );
-
-  if (!isConnected) {
-    return (
-      <DefaultLayout>
-        <div className="flex justify-center items-center min-h-[50vh]">
-          <div className="text-center">
-            <p className="text-danger mb-4">{t("socketConnectionError")}</p>
-            <Button color="primary" onClick={() => router.push("/start")}>
-              {t("tryAgainWithNewImage")}
-            </Button>
-          </div>
-        </div>
-      </DefaultLayout>
-    );
-  }
 
   return (
     <DefaultLayout>

@@ -1,8 +1,6 @@
-import { NextApiRequest } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 import { v4 as uuidv4 } from "uuid";
-
-import { NextApiResponseServerIO } from "@/lib/socket";
 
 export const config = {
   api: {
@@ -12,7 +10,7 @@ export const config = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponseServerIO,
+  res: NextApiResponse,
 ) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });

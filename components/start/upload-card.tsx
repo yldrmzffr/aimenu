@@ -6,10 +6,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { useLocale } from "@/components/locale-provider";
-import { useSocket } from "@/hooks/use-socket";
 
 export function UploadCard() {
-  const { isConnected } = useSocket();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { t } = useLocale();
@@ -22,13 +20,6 @@ export function UploadCard() {
     if (!file) return;
 
     setLoading(true);
-
-    if (!isConnected) {
-      toast.error(t("socketConnectionError"));
-      setLoading(false);
-
-      return;
-    }
 
     try {
       const formData = new FormData();

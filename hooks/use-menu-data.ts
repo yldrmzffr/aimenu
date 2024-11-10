@@ -2,8 +2,6 @@ import type { MenuItem } from "@/types";
 
 import { useState } from "react";
 
-import { useSocket } from "@/hooks/use-socket";
-
 export function useMenuData(menuId: string | undefined) {
   const [menuItems] = useState<MenuItem[]>([
     {
@@ -24,8 +22,25 @@ export function useMenuData(menuId: string | undefined) {
       calories: "950 kcal",
       prepTime: "20 min",
     },
+    {
+      name: "Tiramisu",
+      description: "Coffee-soaked ladyfingers, mascarpone cream, cocoa",
+      price: "€7.99",
+      category: "Dessert",
+      allergens: ["Gluten", "Eggs", "Dairy"],
+      calories: "450 kcal",
+      prepTime: "10 min",
+    },
+    {
+      name: "Lasagna",
+      description: "Layers of pasta, bolognese sauce, bechamel, mozzarella",
+      price: "€16.99",
+      category: "Pasta",
+      allergens: ["Gluten", "Dairy"],
+      calories: "1050 kcal",
+      prepTime: "30 min",
+    },
   ]);
-  const { isConnected } = useSocket();
 
-  return { menuItems, isConnected };
+  return { menuItems };
 }
