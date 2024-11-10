@@ -10,7 +10,7 @@ type Locale = "tr" | "en" | "zh" | "ar" | "ru";
 const LocaleContext = createContext<{
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (key: keyof typeof translations.tr) => string;
+  t: (key: keyof typeof translations.en) => string;
 }>({
   locale: "en",
   setLocale: () => {},

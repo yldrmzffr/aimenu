@@ -78,7 +78,7 @@ export default function IndexPage() {
       <div className="flex justify-center items-center min-h-[80vh] w-full px-4">
         <div className="w-full max-w-3xl space-y-6">
           <div className="text-center space-y-4 mb-8">
-            <h1 className="text-4xl font-bold">{t("title")}</h1>
+            <h1 className="text-4xl font-bold header animated">{t("title")}</h1>
             <p className="text-lg text-default-600">{t("description")}</p>
           </div>
 

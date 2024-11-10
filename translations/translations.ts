@@ -1,16 +1,4 @@
 export const translations = {
-  tr: {
-    title: "AiMenu",
-    description:
-      "Menüyü dijital olarak deneyimleyin. Bir menü resmi yükleyin ve yemekler hakkında bilgi alın.",
-    uploadTitle: "Menü Görseli Yükle",
-    formats: "Desteklenen formatlar: jpg, jpeg, png",
-    selectImage: "Resim Seç",
-    takePhoto: "Fotoğraf Çek",
-    maxSize: "Maksimum dosya boyutu: 10MB",
-    cancel: "İptal",
-    capture: "Fotoğraf Çek",
-  },
   en: {
     title: "AiMenu",
     description:
@@ -22,6 +10,33 @@ export const translations = {
     maxSize: "Maximum file size: 10MB",
     cancel: "Cancel",
     capture: "Capture",
+    search: "Search...",
+    menuAssistant: "Menu Assistant",
+    askAnythingAboutMenu:
+      "You can ask anything about the menu, get information about the dishes on the menu.",
+    askAboutMenu: "Ask about the menu",
+    chatWelcomeMessage: "Hello! How can I help you with the menu?",
+    menuItems: "Menu Items",
+  },
+  tr: {
+    title: "AiMenu",
+    description:
+      "Menüyü dijital olarak deneyimleyin. Bir menü resmi yükleyin ve yemekler hakkında bilgi alın.",
+    uploadTitle: "Menü Görseli Yükle",
+    formats: "Desteklenen formatlar: jpg, jpeg, png",
+    selectImage: "Resim Seç",
+    takePhoto: "Fotoğraf Çek",
+    maxSize: "Maksimum dosya boyutu: 10MB",
+    cancel: "İptal",
+    capture: "Fotoğraf Çek",
+    search: "Ara...",
+    menuAssistant: "Menü Asistanı",
+    askAnythingAboutMenu:
+      "Menü hakkında herhangi bir şey sorabilir, menüdeki yemekler hakkında bilgi alabilirsiniz.",
+    askAboutMenu: "Menü hakkında soru sor",
+    chatWelcomeMessage:
+      "Merhaba! Menüdeki yemekler hakkında nasıl yardımcı olabilirim?",
+    menuItems: "Menü İçeriği",
   },
   zh: {
     title: "AiMenu",
@@ -31,6 +46,15 @@ export const translations = {
     selectImage: "选择图片",
     takePhoto: "拍照",
     maxSize: "最大文件大小：10MB",
+    cancel: "取消",
+    capture: "拍照",
+    search: "搜索...",
+    menuAssistant: "菜单助手",
+    askAnythingAboutMenu:
+      "您可以询问有关菜单的任何问题，获取有关菜单上菜品的信息。",
+    askAboutMenu: "询问菜单",
+    chatWelcomeMessage: "你好！我如何帮助你查看菜单？",
+    menuItems: "菜单项目",
   },
   ar: {
     title: "AiMenu",
@@ -41,6 +65,15 @@ export const translations = {
     selectImage: "اختر صورة",
     takePhoto: "التقاط صورة",
     maxSize: "الحد الأقصى لحجم الملف: 10 ميغابايت",
+    cancel: "إلغاء",
+    capture: "التقاط",
+    search: "بحث...",
+    menuAssistant: "مساعد القائمة",
+    askAnythingAboutMenu:
+      "يمكنك طرح أي سؤال حول القائمة، والحصول على معلومات حول الأطباق في القائمة.",
+    askAboutMenu: "اسأل عن القائمة",
+    chatWelcomeMessage: "مرحبًا! كيف يمكنني مساعدتك في القائمة؟",
+    menuItems: "عناصر القائمة",
   },
   ru: {
     title: "AiMenu",
@@ -51,5 +84,14 @@ export const translations = {
     selectImage: "Выбрать изображение",
     takePhoto: "Сделать фото",
     maxSize: "Максимальный размер файла: 10 МБ",
+    cancel: "Отмена",
+    capture: "Сделать фото",
+    search: "Поиск...",
+    menuAssistant: "Помощник меню",
+    askAnythingAboutMenu:
+      "Вы можете задать любой вопрос о меню, получить информацию о блюдах в меню.",
+    askAboutMenu: "Задать вопрос о меню",
+    chatWelcomeMessage: "Привет! Как я могу помочь вам с меню?",
+    menuItems: "Элементы меню",
   },
 };
