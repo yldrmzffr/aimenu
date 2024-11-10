@@ -7,34 +7,28 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponseServerIO,
 ) {
-  if (!res.socket.server.io) {
-    const io = new ServerIO(res.socket.server, {
-      path: "/api/socket",
-      addTrailingSlash: false,
-      transports: ["polling", "websocket"],
-      cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-      },
-      connectTimeout: 5000,
-      pingTimeout: 5000,
-      upgradeTimeout: 5000,
-    });
+  if (res.socket.server.io) {
+    console.log("Socket server already running");
+    res.end();
 
-    res.socket.server.io = io;
-
-    io.on("connection", (socket) => {
-      console.log("Client connected:", socket.id);
-
-      socket.on("start-upload", (data) => {
-        console.log("Upload started:", data);
-      });
-
-      socket.on("disconnect", () => {
-        console.log("Client disconnected:", socket.id);
-      });
-    });
+    return;
   }
 
+  const io = new ServerIO(res.socket.server, {
+    path: "/api/socket",
+    addTrailingSlash: false,
+    transports: ["websocket", "polling"],
+  });
+
+  io.on("connection", (socket) => {
+    console.log("Client connected:", socket.id);
+
+    socket.on("disconnect", () => {
+      console.log("Client disconnected:", socket.id);
+    });
+  });
+
+  res.socket.server.io = io;
+  console.log("Socket server initialized");
   res.end();
 }

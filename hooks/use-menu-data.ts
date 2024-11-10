@@ -2,29 +2,30 @@ import type { MenuItem } from "@/types";
 
 import { useState } from "react";
 
-export function useMenuData() {
+import { useSocket } from "@/hooks/use-socket";
+
+export function useMenuData(menuId: string | undefined) {
   const [menuItems] = useState<MenuItem[]>([
     {
-      name: "Grilled Salmon",
-      description:
-        "Fresh Atlantic salmon with seasonal vegetables, served with lemon butter sauce",
-      price: "€24.99",
-      category: "Main Course",
-      allergens: ["Fish", "Dairy"],
-      calories: "450 kcal",
-      prepTime: "20 min",
+      name: "Margherita Pizza",
+      description: "Fresh tomatoes, mozzarella, basil, olive oil",
+      price: "€12.99",
+      category: "Pizza",
+      allergens: ["Gluten", "Dairy"],
+      calories: "850 kcal",
+      prepTime: "15 min",
     },
     {
-      name: "Beef Tenderloin",
-      description:
-        "Premium cut served with truffle mushroom sauce and roasted potatoes",
-      price: "€29.99",
-      category: "Main Course",
-      allergens: ["Dairy"],
-      calories: "580 kcal",
-      prepTime: "25 min",
+      name: "Spaghetti Carbonara",
+      description: "Eggs, pecorino cheese, pancetta, black pepper",
+      price: "€14.99",
+      category: "Pasta",
+      allergens: ["Gluten", "Eggs", "Dairy"],
+      calories: "950 kcal",
+      prepTime: "20 min",
     },
   ]);
+  const { isConnected } = useSocket();
 
-  return { menuItems };
+  return { menuItems, isConnected };
 }

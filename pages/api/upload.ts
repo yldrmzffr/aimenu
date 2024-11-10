@@ -29,16 +29,6 @@ export default async function handler(
 
     const menuId = uuidv4();
 
-    if (res.socket.server.io) {
-      const io = res.socket.server.io;
-
-      io.emit("upload-progress", {
-        status: "processing",
-        menuId,
-        progress: 100,
-      });
-    }
-
     res.status(200).json({
       success: true,
       menuId,

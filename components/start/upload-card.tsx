@@ -9,8 +9,8 @@ import { useLocale } from "@/components/locale-provider";
 import { useSocket } from "@/hooks/use-socket";
 
 export function UploadCard() {
+  const { isConnected } = useSocket();
   const [loading, setLoading] = useState(false);
-  const socket = useSocket();
   const router = useRouter();
   const { t } = useLocale();
 
@@ -23,28 +23,24 @@ export function UploadCard() {
 
     setLoading(true);
 
-    // Socket bağlantısı kontrolü
-    if (!socket?.connected) {
-      console.error("Socket connection is not available");
+    if (!isConnected) {
       toast.error(t("socketConnectionError"));
       setLoading(false);
 
       return;
     }
 
-    const formData = new FormData();
-
-    formData.append("image", file);
-
     try {
-      socket.emit("start-upload", { fileName: file.name });
+      const formData = new FormData();
+
+      formData.append("image", file);
 
       const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
 
-      if (response.ok) throw new Error("Upload failed");
+      if (!response.ok) throw new Error("Upload failed");
 
       const data = await response.json();
 

@@ -1,36 +1,59 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import io, { Socket } from "socket.io-client";
 
-export function useSocket() {
+interface UseSocketReturn {
+  socket: Socket | undefined;
+  isConnected: boolean;
+}
+
+export function useSocket(): UseSocketReturn {
   const socketRef = useRef<Socket>();
+  const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
     const socketInitializer = async () => {
-      await fetch("/api/socket");
+      try {
+        await fetch("/api/socket");
 
-      const socket = io({
-        path: "/api/socket",
-      });
+        const socket = io({
+          path: "/api/socket",
+          transports: ["websocket", "polling"],
+        });
 
-      socket.on("connect", () => {
-        console.log("Connected to socket");
-      });
+        socket.on("connect", () => {
+          console.log("Socket connected");
+          setIsConnected(true);
+        });
 
-      socket.on("connect_error", (err) => {
-        console.log("Socket connection error:", err);
-      });
+        socket.on("disconnect", () => {
+          console.log("Socket disconnected");
+          setIsConnected(false);
+        });
 
-      socketRef.current = socket;
+        socket.on("connect_error", (err) => {
+          console.log("Socket connection error:", err);
+          setIsConnected(false);
+        });
+
+        socketRef.current = socket;
+      } catch (error) {
+        console.error("Socket initialization error:", error);
+        setIsConnected(false);
+      }
     };
 
     socketInitializer();
 
     return () => {
       if (socketRef.current) {
+        socketRef.current.removeAllListeners();
         socketRef.current.disconnect();
       }
     };
   }, []);
 
-  return socketRef.current;
+  return {
+    socket: socketRef.current,
+    isConnected,
+  };
 }

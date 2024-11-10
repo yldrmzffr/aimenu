@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@nextui-org/button";
-import { MessageCircle } from "lucide-react";
+import { ArrowLeft, MessageCircle } from "lucide-react";
 
 import { MenuItemCard } from "@/components/menu/menu-item-card";
 import { MenuSearch } from "@/components/menu/menu-search";
@@ -13,10 +13,14 @@ import { useLocale } from "@/components/locale-provider";
 
 export default function MenuDetailPage() {
   const router = useRouter();
-  const { id } = router.query;
+  const { id: menuId } = router.query;
+
   const { t } = useLocale();
-  const { menuItems } = useMenuData();
+
+  const { menuItems, isConnected } = useMenuData(menuId as string);
+
   const chat = useChat(t("chatWelcomeMessage"));
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredMenuItems = menuItems.filter(
@@ -26,9 +30,35 @@ export default function MenuDetailPage() {
       item.category.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
+  if (!isConnected) {
+    return (
+      <DefaultLayout>
+        <div className="flex justify-center items-center min-h-[50vh]">
+          <div className="text-center">
+            <p className="text-danger mb-4">{t("socketConnectionError")}</p>
+            <Button color="primary" onClick={() => router.push("/start")}>
+              {t("tryAgainWithNewImage")}
+            </Button>
+          </div>
+        </div>
+      </DefaultLayout>
+    );
+  }
+
   return (
     <DefaultLayout>
       <div className="max-w-[1200px] mx-auto">
+        <div className="pt-4 px-4">
+          <Button
+            className="font-medium"
+            color="primary"
+            startContent={<ArrowLeft size={20} />}
+            variant="light"
+            onClick={() => router.push("/start")}
+          >
+            {t("backToHome")}
+          </Button>
+        </div>
         <div className="pt-8 px-4">
           <div className="space-y-6">
             <div className="flex flex-col space-y-4">
@@ -39,15 +69,21 @@ export default function MenuDetailPage() {
                 <MenuSearch value={searchQuery} onChange={setSearchQuery} />
               </div>
 
-              <div className="grid gap-4">
-                {filteredMenuItems.map((item, index) => (
-                  <MenuItemCard
-                    key={index}
-                    item={item}
-                    onAskBot={chat.handleSendMessage}
-                  />
-                ))}
-              </div>
+              {filteredMenuItems.length === 0 ? (
+                <div className="text-center py-8 text-default-500">
+                  {t("noMenuItems")}
+                </div>
+              ) : (
+                <div className="grid gap-4">
+                  {filteredMenuItems.map((item, index) => (
+                    <MenuItemCard
+                      key={`${item.name}-${index}`}
+                      item={item}
+                      onAskBot={chat.handleSendMessage}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

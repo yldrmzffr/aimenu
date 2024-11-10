@@ -20,6 +20,9 @@ export const translations = {
     menuItems: "Available Dishes",
     socketConnectionError: "Connection issue detected. Please try again.",
     uploadFailed: "Upload unsuccessful. Please try again.",
+    tryAgainWithNewImage: "Try again with a new image",
+    noMenuItems: "No menu items found.",
+    backToHome: "Start Over",
   },
   tr: {
     title: "Akıllı Menü",
@@ -42,6 +45,9 @@ export const translations = {
     menuItems: "Menüdeki Lezzetler",
     socketConnectionError: "Bağlantı sorunu oluştu. Lütfen tekrar deneyiniz.",
     uploadFailed: "Yükleme başarısız oldu. Lütfen tekrar deneyiniz.",
+    tryAgainWithNewImage: "Yeni bir fotoğraf ile tekrar deneyin",
+    noMenuItems: "Menüde yemek bulunamadı.",
+    backToHome: "Yeniden Başla",
   },
   zh: {
     title: "智能菜单助手",
@@ -63,6 +69,9 @@ export const translations = {
     menuItems: "精选菜品",
     socketConnectionError: "连接出现问题，请重试。",
     uploadFailed: "上传失败，请重试。",
+    tryAgainWithNewImage: "使用新图片重试",
+    noMenuItems: "未找到菜品。",
+    backToHome: "返回首页",
   },
   ar: {
     title: "القائمة الذكية",
@@ -85,6 +94,9 @@ export const translations = {
     menuItems: "الأطباق المتوفرة",
     socketConnectionError: "حدثت مشكلة في الاتصال. يرجى المحاولة مرة أخرى.",
     uploadFailed: "فشل التحميل. يرجى المحاولة مرة أخرى.",
+    tryAgainWithNewImage: "المحاولة مرة أخرى بصورة جديد ",
+    noMenuItems: "لم يتم العثور على أطباق.",
+    backToHome: "العودة إلى الصفحة الرئيسية",
   },
   ru: {
     title: "Умный Помощник Меню",
@@ -108,5 +120,8 @@ export const translations = {
     socketConnectionError:
       "Проблема с подключением. Пожалуйста, попробуйте снова.",
     uploadFailed: "Загрузка не удалась. Пожалуйста, попробуйте снова.",
+    tryAgainWithNewImage: "Попробуйте снова с новым изображением",
+    noMenuItems: "Блюда не найдены.",
+    backToHome: "Начать заново",
   },
 };
