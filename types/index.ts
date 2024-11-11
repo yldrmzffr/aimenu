@@ -9,8 +9,8 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export interface MenuItem {
   name: string;
   description: string;
-  price: string;
-  category: string;
+  price?: string;
+  category?: string;
   allergens?: string[];
   calories?: string;
   prepTime?: string;

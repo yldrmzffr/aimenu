@@ -10,7 +10,7 @@ import { useLocale } from "@/components/locale-provider";
 export function UploadCard() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   const handleImageUpload = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -20,11 +20,13 @@ export function UploadCard() {
     if (!file) return;
 
     setLoading(true);
+    toast.info(t("analyzing"));
 
     try {
       const formData = new FormData();
 
       formData.append("image", file);
+      formData.append("language", locale); // Add language to the request
 
       const response = await fetch("/api/upload", {
         method: "POST",
@@ -35,10 +37,15 @@ export function UploadCard() {
 
       const data = await response.json();
 
-      router.push(`/menu/${data.menuId}/detail`);
+      if (data.success) {
+        toast.success(t("analysisComplete"));
+        router.push(`/menu/${data.menuId}`);
+      } else {
+        throw new Error(data.error || "Analysis failed");
+      }
     } catch (error) {
-      toast.error(t("uploadFailed"));
       console.error("Upload error:", error);
+      toast.error(t("uploadFailed"));
     } finally {
       setLoading(false);
     }
@@ -57,16 +64,11 @@ export function UploadCard() {
               color="primary"
               isLoading={loading}
               size="lg"
-              startContent={<BiCloudUpload />}
+              startContent={!loading && <BiCloudUpload />}
               onClick={() => document.getElementById("fileInput")?.click()}
             >
-              {t("selectImage")}
+              {loading ? t("analyzing") : t("selectImage")}
             </Button>
-            {/*
-              <Button color="secondary" size="lg" startContent={<BiCamera />}>
-              {t("takePhoto")}
-              </Button>
-            */}
           </div>
 
           <input

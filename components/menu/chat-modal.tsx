@@ -35,20 +35,24 @@ export function ChatModal({
   return (
     <Modal
       hideCloseButton
-      className="sm:!max-w-[400px] sm:!h-[600px] sm:!m-4"
+      className="sm:!max-w-[600px] md:!max-w-[800px] sm:!h-[600px] sm:!m-4"
       isOpen={isOpen}
-      // placement="bottom-end"
       onClose={onClose}
     >
-      <ModalContent className="h-[100vh] sm:h-full">
-        <ModalHeader className="flex justify-between items-center border-b">
+      <ModalContent className="h-[100dvh] sm:h-full relative">
+        <ModalHeader className="flex justify-between items-center border-b sticky top-0 bg-background z-10">
           <div>
             <p className="text-lg font-bold">{t("menuAssistant")}</p>
             <p className="text-small text-default-500">
               {t("askAnythingAboutMenu")}
             </p>
           </div>
-          <Button isIconOnly variant="light" onClick={onClose}>
+          <Button
+            isIconOnly
+            className="fixed sm:static right-2 top-2"
+            variant="light"
+            onClick={onClose}
+          >
             <X size={20} />
           </Button>
         </ModalHeader>
@@ -76,7 +80,7 @@ export function ChatModal({
               <div ref={messagesEndRef} />
             </div>
 
-            <div className="p-4 border-t">
+            <div className="p-4 border-t sticky bottom-0 bg-background">
               <div className="flex gap-2">
                 <Input
                   placeholder={t("askAboutMenu")}
