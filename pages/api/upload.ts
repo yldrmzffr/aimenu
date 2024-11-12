@@ -169,7 +169,7 @@ export default async function handler(
       createdAt: new Date(),
     };
 
-    const redisKey = `menu:${menuId}`;
+    const redisKey = `menu:${menuId}:details`;
 
     await setJsonEx(
       redisKey,

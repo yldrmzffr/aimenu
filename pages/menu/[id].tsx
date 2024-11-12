@@ -8,10 +8,10 @@ import { MenuItemCard } from "@/components/menu/menu-item-card";
 import { MenuSearch } from "@/components/menu/menu-search";
 import { ChatModal } from "@/components/menu/chat-modal";
 import { useMenuData } from "@/hooks/use-menu-data";
-import { useChat } from "@/hooks/use-chat";
 import DefaultLayout from "@/layouts/default";
-import { useLocale } from "@/components/locale-provider";
 import { MenuItem } from "@/types";
+import { useMenuChat } from "@/hooks/use-chat";
+import { useLocale } from "@/components/locale-provider";
 
 interface CategoryGroup {
   [key: string]: MenuItem[];
@@ -19,12 +19,13 @@ interface CategoryGroup {
 
 export default function MenuDetailPage() {
   const router = useRouter();
-  const { id: menuId } = router.query as { id: string };
   const { t } = useLocale();
+  const { id: menuId } = router.query as { id: string };
   const { menuItems } = useMenuData(menuId);
-  const chat = useChat(t("chatWelcomeMessage"));
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const chat = useMenuChat(menuId, menuItems);
 
   const { categories, groupedAndFilteredItems } = useMemo(() => {
     const filtered = menuItems.filter(

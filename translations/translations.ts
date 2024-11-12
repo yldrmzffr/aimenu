@@ -17,6 +17,7 @@ export const translations = {
     askAboutMenu: "Ask About Menu",
     chatWelcomeMessage:
       "Welcome! I'm here to help you discover our delicious menu. What would you like to know?",
+    chatErrorMessage: "An error occurred. Please try again.",
     menuItems: "Available Dishes",
     socketConnectionError: "Connection issue detected. Please try again.",
     uploadFailed: "Upload unsuccessful. Please try again.",
@@ -55,6 +56,7 @@ export const translations = {
     askAboutMenu: "Menü Hakkında Sor",
     chatWelcomeMessage:
       "Hoş geldiniz! Lezzetli menümüzü keşfetmenize yardımcı olmak için buradayım. Ne öğrenmek istersiniz?",
+    chatErrorMessage: "Bir hata oluştu. Lütfen tekrar deneyin.",
     menuItems: "Menüdeki Lezzetler",
     socketConnectionError: "Bağlantı sorunu oluştu. Lütfen tekrar deneyiniz.",
     uploadFailed: "Yükleme başarısız oldu. Lütfen tekrar deneyiniz.",
@@ -93,6 +95,7 @@ export const translations = {
       "对菜品有任何疑问？可以询问原料、烹饪方法或营养信息等所有细节。",
     askAboutMenu: "询问菜单",
     chatWelcomeMessage: "欢迎！我将为您详细介绍我们的美味菜单。您想了解什么？",
+    chatErrorMessage: "发生错误。请重试。",
     menuItems: "精选菜品",
     socketConnectionError: "连接出现问题，请重试。",
     uploadFailed: "上传失败，请重试。",
@@ -131,6 +134,7 @@ export const translations = {
     askAboutMenu: "اسأل عن القائمة",
     chatWelcomeMessage:
       "أهلاً بك! أنا هنا لمساعدتك في اكتشاف قائمتنا الشهية. ماذا تود أن تعرف؟",
+    chatErrorMessage: "حدث خطأ. يرجى المحاولة مرة أخرى.",
     menuItems: "الأطباق المتوفرة",
     socketConnectionError: "حدثت مشكلة في الاتصال. يرجى المحاولة مرة أخرى.",
     uploadFailed: "فشل التحميل. يرجى المحاولة مرة أخرى.",
@@ -169,6 +173,7 @@ export const translations = {
     askAboutMenu: "Спросить о меню",
     chatWelcomeMessage:
       "Добро пожаловать! Я здесь, чтобы помочь вам открыть для себя наше вкусное меню. Что бы вы хотели узнать?",
+    chatErrorMessage: "Произошла ошибка. Пожалуйста, попробуйте снова.",
     menuItems: "Доступные блюда",
     socketConnectionError:
       "Проблема с подключением. Пожалуйста, попробуйте снова.",

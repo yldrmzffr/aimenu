@@ -9,7 +9,7 @@ export default async function handler(
   const { id } = req.query;
 
   try {
-    const key = `menu:${id}`;
+    const key = `menu:${id}:details`;
     const menuItems = await redis.getJson(key);
 
     res.status(200).json(menuItems || []);
