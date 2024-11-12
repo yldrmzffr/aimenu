@@ -72,7 +72,7 @@ export function UploadCard() {
           </div>
 
           <input
-            accept="image/*"
+            accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
             className="hidden"
             id="fileInput"
             type="file"

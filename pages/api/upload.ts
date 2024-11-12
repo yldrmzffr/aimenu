@@ -1,8 +1,11 @@
+// TODO: This code is not production-ready and is only for demonstration purposes.
+// TODO: Refactor and add error handling, input validation, and proper error messages.
+
 import fs from "fs/promises";
 
 import { parse } from "csv-parse/sync";
 import { NextApiRequest, NextApiResponse } from "next";
-import formidable from "formidable";
+import formidable, { Part } from "formidable";
 import { v4 as uuidv4 } from "uuid";
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -19,7 +22,9 @@ export const config = {
   },
 };
 
-async function imageToBase64(filepath: string): Promise<string> {
+const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "application/pdf"];
+
+async function fileToBase64(filepath: string): Promise<string> {
   const fileData = await fs.readFile(filepath);
 
   return fileData.toString("base64");
@@ -57,12 +62,13 @@ interface MenuAnalysisResponse {
 }
 
 async function analyzeMenuWithClaude(
-  imageBase64: string,
+  fileBase64: string,
+  mimeType: "application/pdf" | "image/jpeg" | "image/png",
   language: string,
 ): Promise<MenuAnalysisResponse> {
   try {
     const systemPrompt = `You are a professional menu analysis expert with extensive experience in restaurant operations and food service industry.
-      Analyze the provided menu image and extract detailed menu items data.
+      Analyze the provided menu ${mimeType === "application/pdf" ? "PDF" : "image"} and extract detailed menu items data.
       
       Return data in CSV format with the following headers:
       name,description,price,category,allergens,calories,prep_time
@@ -94,40 +100,68 @@ async function analyzeMenuWithClaude(
       4. Maintain original price format and currency symbol
       5. Keep numbers (calories) in original format
       
-      Example output format (in ${language.toUpperCase()}):
-      name,description,price,category,allergens,calories,prep_time
-      "Margherita Pizza","Mozarella peyniri, taze fesleğen ve domates sos ile",€12,"Ana Yemek","süt;gluten",,
-      "Sezar Salata","Marul, kruton, parmesan peyniri ve sezar sos",€8,"Başlangıç","süt;gluten;yumurta",320,
-      
       Return only the CSV formatted data without any additional text or explanations.`;
 
-    const response = await anthropic.messages.create({
-      model: "claude-3-5-sonnet-20241022",
-      max_tokens: 1024,
-      temperature: 0.2,
-      system: systemPrompt,
-      messages: [
-        {
-          role: "user",
-          content: [
-            {
-              type: "image",
-              source: {
-                type: "base64",
-                media_type: "image/jpeg",
-                data: imageBase64,
-              },
-            },
-            {
-              type: "text",
-              text: "Please analyze this menu and extract the menu items.",
-            },
-          ],
-        },
-      ],
-    });
+    let response;
 
-    const text = (response.content[0] as any).text;
+    if (mimeType === "application/pdf") {
+      response = await anthropic.beta.messages.create({
+        betas: ["pdfs-2024-09-25"],
+        model: "claude-3-5-sonnet-20241022",
+        max_tokens: 1024,
+        temperature: 0.2,
+        system: systemPrompt,
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "document",
+                source: {
+                  type: "base64",
+                  media_type: mimeType,
+                  data: fileBase64,
+                },
+              },
+              {
+                type: "text",
+                text: "Please analyze this menu and extract the menu items.",
+              },
+            ],
+          },
+        ],
+      });
+    }
+
+    if (mimeType === "image/jpeg" || mimeType === "image/png") {
+      response = await anthropic.messages.create({
+        model: "claude-3-5-sonnet-20241022",
+        max_tokens: 1024,
+        temperature: 0.2,
+        system: systemPrompt,
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "image",
+                source: {
+                  type: "base64",
+                  media_type: mimeType,
+                  data: fileBase64,
+                },
+              },
+              {
+                type: "text",
+                text: "Please analyze this menu and extract the menu items.",
+              },
+            ],
+          },
+        ],
+      });
+    }
+
+    const text = (response?.content[0] as any).text;
     const result = csvToJson(text);
 
     console.log("Claude analysis result:", result);
@@ -148,7 +182,14 @@ export default async function handler(
   }
 
   try {
-    const form = formidable();
+    const form = formidable({
+      filter: (part: Part): boolean => {
+        if (!part.mimetype) return false;
+
+        return ALLOWED_MIME_TYPES.includes(part.mimetype);
+      },
+    });
+
     const [fields, files] = await form.parse(req);
     const file = files.image?.[0];
     const language = fields.language?.[0] || "en";
@@ -157,15 +198,24 @@ export default async function handler(
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    const base64Image = await imageToBase64(file.filepath);
+    if (!file.mimetype) {
+      return res.status(400).json({ error: "Invalid file type" });
+    }
 
-    const menuAnalysis = await analyzeMenuWithClaude(base64Image, language);
+    const base64Data = await fileToBase64(file.filepath);
+
+    const menuAnalysis = await analyzeMenuWithClaude(
+      base64Data,
+      file.mimetype as "application/pdf" | "image/jpeg" | "image/png",
+      language,
+    );
 
     const menuId = uuidv4();
 
     const menuData = {
       id: menuId,
       items: menuAnalysis.menuItems,
+      fileType: file.mimetype,
       createdAt: new Date(),
     };
 

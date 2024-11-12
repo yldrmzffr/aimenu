@@ -4,7 +4,7 @@ export const translations = {
     description:
       "Discover our digital menu experience. Simply upload a photo of any menu and get instant, detailed information about every dish.",
     uploadTitle: "Upload Your Menu Photo",
-    formats: "Accepted formats: JPG, JPEG, PNG",
+    formats: "Accepted formats: JPG, JPEG, PNG, PDF",
     selectImage: "Choose Image",
     takePhoto: "Take Photo",
     maxSize: "Maximum size: 10MB",
@@ -43,7 +43,7 @@ export const translations = {
     description:
       "Menümüzü dijital dünyada keşfedin. Menü fotoğrafını yükleyin, tüm yemekler hakkında anında detaylı bilgiye ulaşın.",
     uploadTitle: "Menü Fotoğrafını Yükle",
-    formats: "Kabul edilen formatlar: JPG, JPEG, PNG",
+    formats: "Kabul edilen formatlar: JPG, JPEG, PNG, PDF",
     selectImage: "Fotoğraf Seç",
     takePhoto: "Fotoğraf Çek",
     maxSize: "Maksimum boyut: 10MB",
@@ -83,7 +83,7 @@ export const translations = {
     description:
       "探索我们的数字化菜单体验。上传菜单照片，即刻获取每道菜品的详细信息。",
     uploadTitle: "上传菜单照片",
-    formats: "支持格式：JPG、JPEG、PNG",
+    formats: "支持格式：JPG、JPEG、PNG, PDF",
     selectImage: "选择图片",
     takePhoto: "拍摄照片",
     maxSize: "最大文件限制：10MB",
@@ -121,7 +121,7 @@ export const translations = {
     description:
       "اكتشف قائمتنا الرقمية. قم بتحميل صورة القائمة واحصل على معلومات فورية ومفصلة عن كل طبق.",
     uploadTitle: "تحميل صورة القائمة",
-    formats: "الصيغ المقبولة: JPG، JPEG، PNG",
+    formats: "الصيغ المدعومة: JPG، JPEG، PNG، PDF",
     selectImage: "اختيار صورة",
     takePhoto: "التقاط صورة",
     maxSize: "الحجم الأقصى: 10 ميغابايت",
@@ -160,7 +160,7 @@ export const translations = {
     description:
       "Откройте для себя цифровое меню. Загрузите фотографию меню и получите мгновенную подробную информацию о каждом блюде.",
     uploadTitle: "Загрузить фото меню",
-    formats: "Поддерживаемые форматы: JPG, JPEG, PNG",
+    formats: "Поддерживаемые форматы: JPG, JPEG, PNG, PDF",
     selectImage: "Выбрать фото",
     takePhoto: "Сделать фото",
     maxSize: "Максимальный размер: 10МБ",
