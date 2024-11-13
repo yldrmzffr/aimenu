@@ -7,8 +7,12 @@ import { toast } from "sonner";
 
 import { useLocale } from "@/components/locale-provider";
 
-export function UploadCard() {
-  const [loading, setLoading] = useState(false);
+interface UploadCardProps {
+  setIsLoading: (loading: boolean) => void;
+}
+
+export function UploadCard({ setIsLoading }: UploadCardProps) {
+  const [buttonLoading, setButtonLoading] = useState(false);
   const router = useRouter();
   const { t, locale } = useLocale();
 
@@ -19,14 +23,15 @@ export function UploadCard() {
 
     if (!file) return;
 
-    setLoading(true);
+    setButtonLoading(true);
+    setIsLoading(true);
     toast.info(t("analyzing"));
 
     try {
       const formData = new FormData();
 
       formData.append("image", file);
-      formData.append("language", locale); // Add language to the request
+      formData.append("language", locale);
 
       const response = await fetch("/api/upload", {
         method: "POST",
@@ -47,7 +52,8 @@ export function UploadCard() {
       console.error("Upload error:", error);
       toast.error(t("uploadFailed"));
     } finally {
-      setLoading(false);
+      setButtonLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -62,12 +68,12 @@ export function UploadCard() {
           <div className="flex flex-col w-full gap-2 max-w-[200px]">
             <Button
               color="primary"
-              isLoading={loading}
+              isLoading={buttonLoading}
               size="lg"
-              startContent={!loading && <BiCloudUpload />}
+              startContent={!buttonLoading && <BiCloudUpload />}
               onClick={() => document.getElementById("fileInput")?.click()}
             >
-              {loading ? t("analyzing") : t("selectImage")}
+              {t("selectImage")}
             </Button>
           </div>
 

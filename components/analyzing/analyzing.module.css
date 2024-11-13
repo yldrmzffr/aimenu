@@ -1,0 +1,99 @@
+.container {
+    min-height: 100vh;
+}
+
+.title {
+    position: relative;
+    font-size: 22px;
+    font-family: 'Arvo', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    line-height: 7;
+    overflow: hidden;
+    background: linear-gradient(90deg, #ffffff50, #ffffff99, #ffffff50);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 3s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+.blob {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #3023ae 0%, #ff0099 100%);
+    box-shadow: 0 0 200px 0 rgba(255, 0, 153, 0.7), 0 0 50px 0 rgba(48, 35, 174, 0.7);
+    background-size: 200% 200%;
+    animation: aiBlob 3s linear infinite, gradient 12s linear infinite;
+    z-index: 4;
+}
+
+.blob1 {
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #3E29C120;
+    animation: aiBlob 4s linear infinite reverse;
+    z-index: 3;
+}
+
+.blob2 {
+    width: 230px;
+    height: 230px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #E3117C20;
+    animation: aiBlob 5s linear infinite;
+    z-index: 2;
+}
+
+.blob3 {
+    width: 240px;
+    height: 240px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #7B20A820;
+    animation: aiBlob 3.5s linear infinite;
+    z-index: 1;
+}
+
+@keyframes aiBlob {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    20% { border-radius: 60% 40% 40% 60% / 60% 25% 75% 40%; }
+    40% { border-radius: 70% 30% 65% 35% / 80% 45% 55% 20%; }
+    60% { border-radius: 30% 70% 70% 30% / 20% 30% 70% 80%; }
+    80% { border-radius: 40% 60% 40% 60% / 70% 55% 45% 30%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+@keyframes animate {
+    0% {
+        background-position: -1000%;
+    }
+    100% {
+        background-position: 1000%;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

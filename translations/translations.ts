@@ -35,7 +35,8 @@ export const translations = {
     dietaryInfo: "Dietary Information",
     askAboutDish: "Ask About Dish",
     exploreMore: "Explore More",
-    analyzing: "Analyzing... Please wait. This may take a few seconds.",
+    analyzingTitle: "Analyzing...",
+    analyzing: "Analyzing... Please wait. This may take a few minutes.",
     analysisComplete: "Analysis complete!",
   },
   tr: {
@@ -74,8 +75,9 @@ export const translations = {
     dietaryInfo: "Diyet Bilgisi",
     askAboutDish: "Yemek Hakkında Sor",
     exploreMore: "Daha Fazla Keşfet",
+    analyzingTitle: "Analiz Ediliyor...",
     analyzing:
-      "Analiz ediliyor... Lütfen bekleyin. Bu birkaç saniye sürebilir.",
+      "Analiz ediliyor... Lütfen bekleyin. Bu birkaç dakika sürebilir.",
     analysisComplete: "Analiz tamamlandı!",
   },
   zh: {
@@ -113,7 +115,8 @@ export const translations = {
     dietaryInfo: "饮食信息",
     askAboutDish: "询问菜品",
     exploreMore: "查看更多",
-    analyzing: "正在分析... 请稍等片刻。",
+    analyzingTitle: "分析中...",
+    analyzing: "分析中... 请稍候。这可能需要几分钟。",
     analysisComplete: "分析完成！",
   },
   ar: {
@@ -152,7 +155,8 @@ export const translations = {
     dietaryInfo: "معلومات عن النظام الغذائي",
     askAboutDish: "اسأل عن الطبق",
     exploreMore: "استكشاف المزيد",
-    analyzing: "جاري التحليل... يرجى الانتظار. قد يستغرق ذلك بضع ثوانٍ.",
+    analyzingTitle: "جاري التحليل...",
+    analyzing: "جاري التحليل... يرجى الانتظار. قد يستغرق ذلك بضع دقائق.",
     analysisComplete: "اكتمل التحليل!",
   },
   ru: {
@@ -192,8 +196,9 @@ export const translations = {
     dietaryInfo: "Информация о диете",
     askAboutDish: "Спросить о блюде",
     exploreMore: "Узнать больше",
+    analyzingTitle: "Анализ...",
     analyzing:
-      "Анализ... Пожалуйста, подождите. Это может занять несколько секунд.",
+      "Анализ... Пожалуйста, подождите. Это может занять несколько минут.",
     analysisComplete: "Анализ завершён!",
   },
 };

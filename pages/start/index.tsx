@@ -5,8 +5,10 @@ import { CameraModal } from "@/components/start/camera-modal";
 import DefaultLayout from "@/layouts/default";
 import { useLocale } from "@/components/locale-provider";
 import LanguageButton from "@/components/start/language-button";
+import Analyzing from "@/components/analyzing";
 
 export default function IndexPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isCameraModalOpen, setIsCameraModalOpen] = useState(false);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -64,6 +66,10 @@ export default function IndexPage() {
     }
   };
 
+  if (isLoading) {
+    return <Analyzing title={t("analyzingTitle")} />;
+  }
+
   return (
     <DefaultLayout>
       <div className="flex justify-center items-center min-h-[80vh] w-full px-4">
@@ -73,7 +79,7 @@ export default function IndexPage() {
             <p className="text-lg text-default-600">{t("description")}</p>
           </div>
 
-          <UploadCard />
+          <UploadCard setIsLoading={setIsLoading} />
           <div className="text-center text-default-500 text-sm">
             <LanguageButton />
           </div>
