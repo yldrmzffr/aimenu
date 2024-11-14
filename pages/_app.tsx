@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 import { fontSans, fontMono } from "@/config/fonts";
 import "@/styles/globals.css";
-import { LocaleProvider } from "@/components/locale-provider";
+import { LocaleProvider } from "@/providers";
 
 import { Toaster } from "sonner";
 

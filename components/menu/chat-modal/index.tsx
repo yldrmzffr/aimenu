@@ -4,7 +4,7 @@ import { ChatHeader } from "./header";
 import { ChatMessages } from "./messages";
 import { ChatInput } from "./input";
 
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 import { Message } from "@/types";
 
 interface ChatModalProps {

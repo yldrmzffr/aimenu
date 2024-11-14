@@ -1,6 +1,6 @@
 import { Card, CardBody } from "@nextui-org/card";
 
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 import { MenuItem } from "@/types";
 import { MenuItemHeader } from "@/components/menu/menu-item-card/header";
 import { MenuItemTags } from "@/components/menu/menu-item-card/tag";

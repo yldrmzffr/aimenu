@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/router";
 
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 
 interface MenuState {
   menuItems: MenuItem[];

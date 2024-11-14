@@ -1,70 +1,15 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import { UploadCard } from "@/components/start/upload-card";
-import { CameraModal } from "@/components/start/camera-modal";
 import DefaultLayout from "@/layouts/default";
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 import LanguageButton from "@/components/start/language-button";
 import Analyzing from "@/components/analyzing";
 
 export default function IndexPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isCameraModalOpen, setIsCameraModalOpen] = useState(false);
-  const [stream, setStream] = useState<MediaStream | null>(null);
 
   const { t } = useLocale();
-
-  const startCamera = async () => {
-    try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" },
-      });
-
-      setStream(mediaStream);
-
-      if (videoRef.current) {
-        videoRef.current.srcObject = mediaStream;
-      }
-
-      setIsCameraModalOpen(true);
-    } catch (err) {
-      console.error("Error accessing camera:", err);
-    }
-  };
-
-  const stopCamera = () => {
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-      setStream(null);
-    }
-    setIsCameraModalOpen(false);
-  };
-
-  const captureImage = () => {
-    if (videoRef.current) {
-      const canvas = document.createElement("canvas");
-
-      canvas.width = videoRef.current.videoWidth;
-      canvas.height = videoRef.current.videoHeight;
-      const ctx = canvas.getContext("2d");
-
-      if (ctx) {
-        ctx.drawImage(videoRef.current, 0, 0);
-        canvas.toBlob((blob) => {
-          if (blob) {
-            const file = new File([blob], "camera-image.jpg", {
-              type: "image/jpeg",
-            });
-
-            console.log("Captured image:", file);
-          }
-        }, "image/jpeg");
-      }
-
-      stopCamera();
-    }
-  };
 
   if (isLoading) {
     return <Analyzing title={t("analyzingTitle")} />;
@@ -85,13 +30,6 @@ export default function IndexPage() {
           </div>
         </div>
       </div>
-
-      <CameraModal
-        isOpen={isCameraModalOpen}
-        videoRef={videoRef}
-        onCapture={captureImage}
-        onClose={stopCamera}
-      />
     </DefaultLayout>
   );
 }

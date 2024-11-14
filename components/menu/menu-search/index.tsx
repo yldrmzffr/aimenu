@@ -1,7 +1,7 @@
 import { Input } from "@nextui-org/input";
 import { Search } from "lucide-react";
 
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 
 interface MenuSearchProps {
   value: string;

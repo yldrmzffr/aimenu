@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { Link } from "@nextui-org/link";
 
 import { getLanguage } from "@/translations";
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 
 export default function LanguageButton() {
   const { locale } = useLocale();

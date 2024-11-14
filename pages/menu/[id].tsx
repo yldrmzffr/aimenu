@@ -10,7 +10,7 @@ import { useMenuData } from "@/hooks/use-menu-data";
 import DefaultLayout from "@/layouts/default";
 import { MenuItem } from "@/types";
 import { useMenuChat } from "@/hooks/use-chat";
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 import Analyzing from "@/components/analyzing";
 import { ChatModal } from "@/components/menu/chat-modal";
 

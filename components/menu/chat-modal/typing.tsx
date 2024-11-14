@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./chat-modal.module.css";
 
 export function Typing() {
   return (

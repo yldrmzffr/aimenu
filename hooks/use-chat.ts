@@ -3,7 +3,7 @@ import type { MenuItem, Message } from "@/types";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { nanoid } from "nanoid";
 
-import { useLocale } from "@/components/locale-provider";
+import { useLocale } from "@/providers";
 
 interface ChatState {
   messages: Message[];
