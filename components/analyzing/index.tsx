@@ -1,7 +1,7 @@
 import styles from "./analyzing.module.css";
 
 interface AnalyzingComponentProps {
-  title: string;
+  title?: string;
 }
 
 export default function Analyzing({ title }: AnalyzingComponentProps) {

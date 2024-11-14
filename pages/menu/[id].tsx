@@ -6,12 +6,13 @@ import { Tabs, Tab } from "@nextui-org/tabs";
 
 import { MenuItemCard } from "@/components/menu/menu-item-card";
 import { MenuSearch } from "@/components/menu/menu-search";
-import { ChatModal } from "@/components/menu/chat-modal";
 import { useMenuData } from "@/hooks/use-menu-data";
 import DefaultLayout from "@/layouts/default";
 import { MenuItem } from "@/types";
 import { useMenuChat } from "@/hooks/use-chat";
 import { useLocale } from "@/components/locale-provider";
+import Analyzing from "@/components/analyzing";
+import { ChatModal } from "@/components/menu/chat-modal";
 
 interface CategoryGroup {
   [key: string]: MenuItem[];
@@ -21,13 +22,20 @@ export default function MenuDetailPage() {
   const router = useRouter();
   const { t } = useLocale();
   const { id: menuId } = router.query as { id: string };
-  const { menuItems } = useMenuData(menuId);
+  const { menuItems, isLoading: menuIsLoading } = useMenuData(menuId);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const chat = useMenuChat(menuId, menuItems);
 
   const { categories, groupedAndFilteredItems } = useMemo(() => {
+    if (!menuItems || menuItems.length === 0) {
+      return {
+        categories: [],
+        groupedAndFilteredItems: {},
+      };
+    }
+
     const filtered = menuItems.filter(
       (item) =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -35,7 +43,7 @@ export default function MenuDetailPage() {
     );
 
     const grouped = filtered.reduce<CategoryGroup>((acc, item) => {
-      const category = item.category || "Diğer";
+      const category = item.category || "Other";
 
       if (!acc[category]) {
         acc[category] = [];
@@ -57,6 +65,10 @@ export default function MenuDetailPage() {
     selectedCategory === "all"
       ? Object.values(groupedAndFilteredItems).flat()
       : groupedAndFilteredItems[selectedCategory] || [];
+
+  if (menuIsLoading) {
+    return <Analyzing />;
+  }
 
   return (
     <DefaultLayout>
