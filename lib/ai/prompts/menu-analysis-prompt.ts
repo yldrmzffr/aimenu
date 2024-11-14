@@ -32,7 +32,7 @@ export class MenuAnalysisPrompt {
       Translation Instructions:
       1. First identify and extract all menu items in original language
       2. Translate the following to ${language.toUpperCase()}:
-         - Item names (if needed)
+         - Item names
          - Descriptions
          - Categories
          - Allergens

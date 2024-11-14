@@ -27,7 +27,6 @@ export default function MenuDetailPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const chat = useMenuChat(menuId, menuItems);
-
   const { categories, groupedAndFilteredItems } = useMemo(() => {
     if (!menuItems || menuItems.length === 0) {
       return {
@@ -158,6 +157,7 @@ export default function MenuDetailPage() {
 
         <ChatModal
           inputMessage={chat.inputMessage}
+          isLoading={chat.isLoading}
           isOpen={chat.isOpen}
           messages={chat.messages}
           onClose={() => chat.setIsOpen(false)}

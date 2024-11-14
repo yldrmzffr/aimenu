@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
-import { Spinner } from "@nextui-org/spinner";
 
 import { ChatMessage } from "./message";
 
 import { Message } from "@/types";
+import { Typing } from "@/components/menu/chat-modal/typing";
 
 interface ChatMessagesProps {
   messages: Message[];
@@ -43,7 +43,7 @@ export function ChatMessages({
       {isLoading && (
         <div className="flex justify-start animate-in fade-in-0 slide-in-from-bottom-1">
           <div className="bg-default-100 rounded-2xl px-4 py-2">
-            <Spinner color="default" size="sm" />
+            <Typing />
           </div>
         </div>
       )}
