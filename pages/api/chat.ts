@@ -3,8 +3,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import Anthropic from "@anthropic-ai/sdk";
 import { nanoid } from "nanoid";
 
-import * as redis from "@/lib/redis";
-import { ChatLib } from "@/lib/chat";
+import * as redis from "@/lib/database/redis";
+import { ChatLib } from "@/lib/utils/chat";
 import { Message } from "@/types";
 
 const ANTHROPIC_CLIENT = new Anthropic({

@@ -1,6 +1,6 @@
 import type { Message } from "@/types";
 
-import * as redis from "./redis";
+import * as redis from "@/lib/database/redis";
 
 const MESSAGE_LIMIT = 30;
 

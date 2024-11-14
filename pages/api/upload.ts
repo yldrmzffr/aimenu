@@ -4,8 +4,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { v4 as uuidv4 } from "uuid";
 import formidable, { Part } from "formidable";
 
-import { setJsonEx } from "@/lib/redis";
-import { analyzeMenuWithClaude } from "@/lib/menu";
+import { setJsonEx } from "@/lib/database/redis";
+import { AIProvider } from "@/types";
+import { AIService } from "@/lib/ai/service-factory";
 
 const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 
@@ -51,13 +52,25 @@ export default async function handler(
       return res.status(400).json({ error: "Invalid file type" });
     }
 
-    const base64Data = await fileToBase64(file.filepath);
+    const fileBase64 = await fileToBase64(file.filepath);
 
-    const menuAnalysis = await analyzeMenuWithClaude({
-      fileBase64: base64Data,
-      mimeType: file.mimetype as "image/jpeg" | "image/png" | "application/pdf",
+    const provider: AIProvider = AIService.createService(
+      "claude",
+      process.env.ANTHROPIC_API_KEY || "",
+    );
+
+    const mimeType = file.mimetype as
+      | "application/pdf"
+      | "image/jpeg"
+      | "image/png";
+
+    const menuAnalysis = await provider.analyzeMenu({
+      fileBase64,
+      mimeType,
       language,
     });
+
+    console.log("Menu analysis:", menuAnalysis);
 
     const menuId = uuidv4();
 
@@ -67,6 +80,8 @@ export default async function handler(
       fileType: file.mimetype,
       createdAt: new Date(),
     };
+
+    console.log("Menu data:", menuData);
 
     const redisKey = `menu:${menuId}:details`;
 

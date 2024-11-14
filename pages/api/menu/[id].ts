@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import * as redis from "@/lib/redis";
+import * as redis from "@/lib/database/redis";
 
 export default async function handler(
   req: NextApiRequest,
