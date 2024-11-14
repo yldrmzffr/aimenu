@@ -4,9 +4,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { v4 as uuidv4 } from "uuid";
 import formidable, { Part } from "formidable";
 
-import { setJsonEx } from "@/lib/database/redis";
+import { redis } from "@/lib/database/redis";
 import { AIProvider } from "@/types";
 import { AIService } from "@/lib/ai/service-factory";
+import { Logger } from "@/lib/utils/logger";
 
 const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 
@@ -27,9 +28,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  const logger = new Logger("api/upload");
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
+
+  logger.debug("Uploading menu!");
 
   try {
     const form = formidable({
@@ -44,11 +49,17 @@ export default async function handler(
     const file = files.image?.[0];
     const language = fields.language?.[0] || "en";
 
+    logger.debug("Uploaded file with language", { language });
+
     if (!file) {
+      logger.error("No file uploaded");
+
       return res.status(400).json({ error: "No file uploaded" });
     }
 
     if (!file.mimetype) {
+      logger.error("Invalid file type", { mimeType: file.mimetype });
+
       return res.status(400).json({ error: "Invalid file type" });
     }
 
@@ -59,10 +70,16 @@ export default async function handler(
       process.env.ANTHROPIC_API_KEY || "",
     );
 
+    logger.debug("AI provider created", {
+      provider: provider.constructor.name,
+    });
+
     const mimeType = file.mimetype as
       | "application/pdf"
       | "image/jpeg"
       | "image/png";
+
+    logger.debug("Analyzing menu", { mimeType, language });
 
     const menuAnalysis = await provider.analyzeMenu({
       fileBase64,
@@ -70,7 +87,7 @@ export default async function handler(
       language,
     });
 
-    console.log("Menu analysis:", menuAnalysis);
+    logger.debug("Menu analyzed", { menuAnalysis });
 
     const menuId = uuidv4();
 
@@ -81,11 +98,11 @@ export default async function handler(
       createdAt: new Date(),
     };
 
-    console.log("Menu data:", menuData);
+    logger.debug("Menu data", { menuData });
 
     const redisKey = `menu:${menuId}:details`;
 
-    await setJsonEx(
+    await redis.setJsonEx(
       redisKey,
       menuData,
       60 * 60 * 10, // 10 hours
@@ -97,7 +114,7 @@ export default async function handler(
       menuData,
     });
   } catch (error) {
-    console.error("Upload error:", error);
+    logger.error("Upload failed", { error });
     res.status(500).json({ error: "Upload failed" });
   }
 }

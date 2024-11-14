@@ -1,7 +1,12 @@
+import { Logger } from "@/lib/utils/logger";
+
 export class MenuAnalysisPrompt {
   // CSV format selected: Offers widespread compatibility, easy parsing, and lower token consumption
+  private readonly logger = new Logger("MenuAnalysisPrompt");
 
   generate(language: string): string {
+    this.logger.debug("Generating menu analysis prompt", { language });
+
     return `You are a professional menu analysis expert with extensive experience in restaurant operations and food service industry.
       Analyze the provided menu image/PDF and extract detailed menu items data.
       

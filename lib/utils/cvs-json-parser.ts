@@ -1,8 +1,13 @@
 import { parse } from "csv-parse/sync";
 
 import { MenuItem } from "@/types";
+import { Logger } from "@/lib/utils/logger";
 
 export function csvToJson(csvString: string): MenuItem[] {
+  const logger = new Logger("csvToJson");
+
+  logger.debug("Parsing CSV to JSON");
+
   try {
     const records = parse(csvString, {
       columns: true,
@@ -10,6 +15,8 @@ export function csvToJson(csvString: string): MenuItem[] {
       delimiter: ",",
       trim: true,
     }) as Record<string, string>[];
+
+    logger.debug("CSV parsed to JSON", { records });
 
     return records.map(
       (record): MenuItem => ({
@@ -23,7 +30,7 @@ export function csvToJson(csvString: string): MenuItem[] {
       }),
     );
   } catch (error) {
-    console.error("CSV parsing error:", error);
+    logger.error("Failed to parse CSV to JSON", { error });
 
     return [];
   }
