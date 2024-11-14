@@ -1,6 +1,6 @@
 import { BaseAIProvider } from "@/lib/ai/base-provider";
-import { MenuAnalysisOptions, MenuAnalysisResponse } from "@/types";
 import { OpenAIChatStrategy } from "@/lib/ai/chat/providers/openai-chat";
+import { MenuAnalysisOptions, MenuAnalysisResponse } from "@/lib/ai/types";
 
 export class Openai extends BaseAIProvider {
   constructor(apiKey: string) {

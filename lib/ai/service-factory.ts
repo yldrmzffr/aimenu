@@ -1,6 +1,6 @@
-import { AIProvider } from "@/types";
 import { Openai } from "@/lib/ai/providers/openai";
 import { Claude } from "@/lib/ai/providers/claude";
+import { AIProvider } from "@/lib/ai/types";
 
 export class AIService {
   static createService(type: "claude" | "openai", apiKey: string): AIProvider {

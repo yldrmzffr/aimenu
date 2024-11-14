@@ -1,7 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 
 import { BaseAIProvider } from "@/lib/ai/base-provider";
-import { MenuAnalysisResponse, MenuAnalysisOptions } from "@/types";
 import { PdfAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/pdf-analysis";
 import { ImageAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/image-analysis";
 import { FileAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/file-analysis";
@@ -9,6 +8,7 @@ import { MenuAnalysisPrompt } from "@/lib/ai/prompts/menu-analysis-prompt";
 import { csvToJson } from "@/lib//utils/cvs-json-parser";
 import { ClaudeChatStrategy } from "@/lib/ai/chat/providers/claude-chat";
 import { Logger } from "@/lib/utils/logger";
+import { MenuAnalysisOptions, MenuAnalysisResponse } from "@/lib/ai/types";
 
 export class Claude extends BaseAIProvider {
   private readonly logger = new Logger("Claude");

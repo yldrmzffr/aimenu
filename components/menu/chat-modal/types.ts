@@ -2,12 +2,14 @@ export interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
+  timestamp?: Date;
 }
 
 export interface ChatHeaderProps {
   title: string;
   subtitle: string;
   onClose: () => void;
+  clearChat: () => void;
 }
 
 export interface ChatMessageProps {

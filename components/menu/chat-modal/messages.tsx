@@ -2,8 +2,8 @@ import { useRef, useEffect } from "react";
 
 import { ChatMessage } from "./message";
 
-import { Message } from "@/types";
 import { Typing } from "@/components/menu/chat-modal/typing";
+import { Message } from "@/components/menu/chat-modal/types";
 
 interface ChatMessagesProps {
   messages: Message[];

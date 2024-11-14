@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { nanoid } from "nanoid";
 
 import { ChatLib } from "@/lib/utils/chat";
-import { Message } from "@/types";
+import { Message } from "@/components/menu/chat-modal/types";
 import { AIService } from "@/lib/ai/service-factory";
 import { Logger } from "@/lib/utils/logger";
 import { redis } from "@/lib/database/redis";

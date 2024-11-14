@@ -131,6 +131,19 @@ export class RedisClient {
       throw error;
     }
   }
+
+  public async del(key: string): Promise<number> {
+    try {
+      const result = await this.getClient().del(key);
+
+      this.logger.debug("Redis DEL operation", { key, success: true });
+
+      return result;
+    } catch (error) {
+      this.logger.error("Redis DEL operation failed", { key, error });
+      throw error;
+    }
+  }
 }
 
 export const redis = RedisClient.getInstance();

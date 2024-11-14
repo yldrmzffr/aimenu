@@ -1,11 +1,12 @@
 import { Modal, ModalContent } from "@nextui-org/modal";
+import { useEffect } from "react";
 
 import { ChatHeader } from "./header";
 import { ChatMessages } from "./messages";
 import { ChatInput } from "./input";
 
 import { useLocale } from "@/providers";
-import { Message } from "@/types";
+import { Message } from "@/components/menu/chat-modal/types";
 
 interface ChatModalProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ interface ChatModalProps {
   onClose: () => void;
   onSend: (message?: string) => void;
   onInputChange: (value: string) => void;
+  clearChat: () => void;
 }
 
 export function ChatModal({
@@ -25,6 +27,7 @@ export function ChatModal({
   onClose,
   onSend,
   onInputChange,
+  clearChat,
 }: ChatModalProps) {
   const { t } = useLocale();
 
@@ -33,6 +36,25 @@ export function ChatModal({
       onSend();
     }
   };
+
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (isOpen) {
+        event.preventDefault();
+        onClose();
+        window.history.pushState(null, "", window.location.pathname);
+      }
+    };
+
+    if (isOpen) {
+      window.history.pushState(null, "", window.location.pathname);
+      window.addEventListener("popstate", handlePopState);
+    }
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [isOpen, onClose]);
 
   return (
     <Modal
@@ -43,6 +65,7 @@ export function ChatModal({
     >
       <ModalContent className="h-[100dvh] sm:h-full">
         <ChatHeader
+          clearChat={clearChat}
           subtitle={t("askAnythingAboutMenu")}
           title={t("menuAssistant")}
           onClose={onClose}

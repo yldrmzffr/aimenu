@@ -1,7 +1,7 @@
 import { FileAnalysisStrategy } from "./file-analysis";
 
-import { FileAnalysisOptions } from "@/types";
 import { Logger } from "@/lib/utils/logger";
+import { FileAnalysisOptions } from "@/lib/ai/types";
 
 export class PdfAnalysisStrategy implements FileAnalysisStrategy {
   private readonly logger = new Logger("PdfAnalysisStrategy");

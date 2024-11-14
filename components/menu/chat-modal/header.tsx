@@ -1,23 +1,28 @@
 import { Button } from "@nextui-org/button";
-import { X } from "lucide-react";
+import { Trash, X } from "lucide-react";
 
 import { ChatHeaderProps } from "@/components/menu/chat-modal/types";
 
-export function ChatHeader({ title, subtitle, onClose }: ChatHeaderProps) {
+export function ChatHeader({
+  title,
+  subtitle,
+  onClose,
+  clearChat,
+}: ChatHeaderProps) {
   return (
     <div className="flex justify-between items-center border-b z-10 bg-background p-4">
-      <div>
+      <div className="flex-1">
         <p className="text-lg font-bold">{title}</p>
         <p className="text-small text-default-500">{subtitle}</p>
       </div>
-      <Button
-        isIconOnly
-        className="absolute sm:static right-2 top-2"
-        variant="light"
-        onClick={onClose}
-      >
-        <X size={20} />
-      </Button>
+      <div className="flex gap-2">
+        <Button isIconOnly color="danger" variant="light" onClick={clearChat}>
+          <Trash size={20} />
+        </Button>
+        <Button isIconOnly variant="light" onClick={onClose}>
+          <X size={20} />
+        </Button>
+      </div>
     </div>
   );
 }

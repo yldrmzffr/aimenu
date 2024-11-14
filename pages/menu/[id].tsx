@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@nextui-org/button";
-import { ArrowLeft, MessageCircle } from "lucide-react";
+import { ArrowLeft, BotMessageSquare } from "lucide-react";
 import { Tabs, Tab } from "@nextui-org/tabs";
 
 import { MenuItemCard } from "@/components/menu/menu-item-card";
@@ -148,14 +148,15 @@ export default function MenuDetailPage() {
           isIconOnly
           className="fixed bottom-6 right-6 z-50 shadow-lg hover:shadow-xl transition-shadow"
           color="primary"
-          radius="full"
+          radius="md"
           size="lg"
           onClick={() => chat.setIsOpen(true)}
         >
-          <MessageCircle size={24} />
+          <BotMessageSquare size={28} />
         </Button>
 
         <ChatModal
+          clearChat={chat.clearChat}
           inputMessage={chat.inputMessage}
           isLoading={chat.isLoading}
           isOpen={chat.isOpen}

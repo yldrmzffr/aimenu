@@ -1,9 +1,10 @@
-import type { MenuItem, Message } from "@/types";
+import type { MenuItem } from "@/types";
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { nanoid } from "nanoid";
 
 import { useLocale } from "@/providers";
+import { Message } from "@/components/menu/chat-modal/types";
 
 interface ChatState {
   messages: Message[];
@@ -15,6 +16,7 @@ interface ChatState {
 interface ChatActions {
   setIsOpen: (isOpen: boolean) => void;
   setInputMessage: (message: string) => void;
+  clearChat: () => void;
   handleSendMessage: (customMessage?: string) => Promise<void>;
 }
 
@@ -119,6 +121,19 @@ export function useMenuChat(
     [],
   );
 
+  const clearChat = async () => {
+    try {
+      await fetchWithTimeout(API_ENDPOINTS.MESSAGES(menuId), {
+        method: "DELETE",
+      });
+
+      setState(createInitialState());
+      setIsOpen(true);
+    } catch (error) {
+      console.error("Failed to clear chat:", error);
+    }
+  };
+
   const handleSendMessage = async (customMessage?: string) => {
     const messageContent = customMessage || state.inputMessage;
 
@@ -178,5 +193,6 @@ export function useMenuChat(
     setIsOpen,
     setInputMessage,
     handleSendMessage,
+    clearChat,
   };
 }

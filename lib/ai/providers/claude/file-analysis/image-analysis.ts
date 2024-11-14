@@ -1,6 +1,6 @@
-import { FileAnalysisOptions } from "@/types";
 import { FileAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/file-analysis";
 import { Logger } from "@/lib/utils/logger";
+import { FileAnalysisOptions } from "@/lib/ai/types";
 
 export class ImageAnalysisStrategy implements FileAnalysisStrategy {
   private readonly logger = new Logger("ImageAnalysisStrategy");

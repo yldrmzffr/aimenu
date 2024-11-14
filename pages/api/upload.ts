@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import formidable, { Part } from "formidable";
 
 import { redis } from "@/lib/database/redis";
-import { AIProvider } from "@/types";
 import { AIService } from "@/lib/ai/service-factory";
 import { Logger } from "@/lib/utils/logger";
+import { AIProvider } from "@/lib/ai/types";
 
 const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 

@@ -1,5 +1,3 @@
-import "./chat-modal.module.css";
-
 export function Typing() {
   return (
     <div className="container">

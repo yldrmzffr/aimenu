@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/button";
-import { MessageCircle } from "lucide-react";
+import { MessageCircleQuestion } from "lucide-react";
 
 import { MenuItemActionsProps } from "@/components/menu/menu-item-card/types";
 import {
@@ -19,7 +19,7 @@ export function MenuItemActions({
       <Button
         className="w-full sm:w-auto text-sm font-medium"
         color="primary"
-        startContent={<MessageCircle size={18} />}
+        startContent={<MessageCircleQuestion size={18} />}
         variant="flat"
         onClick={() => onAskBot(questions[0].question)}
       >

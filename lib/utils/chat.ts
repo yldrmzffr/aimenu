@@ -1,7 +1,6 @@
-import type { Message } from "@/types";
-
 import { redis } from "@/lib/database/redis";
 import { Logger } from "@/lib/utils/logger";
+import { Message } from "@/components/menu/chat-modal/types";
 
 export class ChatLib {
   static logger = new Logger("ChatLib");
