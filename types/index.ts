@@ -1,5 +1,7 @@
 import { SVGProps } from "react";
 
+import { ChatOptions, ChatResponse } from "@/lib/ai/chat/types";
+
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
@@ -30,6 +32,7 @@ export interface MenuAnalysisResponse {
 export interface AIProvider {
   analyzeMenu: (options: MenuAnalysisOptions) => Promise<MenuAnalysisResponse>;
   getPrompt: (language: string) => string;
+  chat: (options: ChatOptions) => Promise<ChatResponse>;
 }
 
 export interface MenuAnalysisOptions {

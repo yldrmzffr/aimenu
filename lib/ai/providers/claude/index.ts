@@ -7,14 +7,18 @@ import { ImageAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/i
 import { FileAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/file-analysis";
 import { MenuAnalysisPrompt } from "@/lib/ai/prompts/menu-analysis-prompt";
 import { csvToJson } from "@/lib//utils/cvs-json-parser";
+import { ClaudeChatStrategy } from "@/lib/ai/chat/providers/claude-chat";
 
-export class Claude implements BaseAIProvider {
+export class Claude extends BaseAIProvider {
   private fileAnalysisStrategies: Map<string, FileAnalysisStrategy>;
   private readonly defaultMaxTokens = 1024;
   private readonly defaultTemperature = 0.2;
 
   constructor(apiKey: string) {
     const anthropic = new Anthropic({ apiKey });
+    const chatStrategy = new ClaudeChatStrategy(anthropic);
+
+    super(chatStrategy);
 
     const strategies: [string, FileAnalysisStrategy][] = [
       ["application/pdf", new PdfAnalysisStrategy(anthropic)],

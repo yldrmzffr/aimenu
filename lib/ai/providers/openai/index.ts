@@ -1,14 +1,14 @@
 import { BaseAIProvider } from "@/lib/ai/base-provider";
-import { MenuAnalysisPrompt } from "@/lib/ai/prompts/menu-analysis-prompt";
+import { MenuAnalysisOptions, MenuAnalysisResponse } from "@/types";
 
-export class Openai implements BaseAIProvider {
-  constructor(private apiKey: string) {}
-
-  async analyzeMenu(): Promise<any> {
+export class Openai extends BaseAIProvider {
+  async analyzeMenu(
+    options: MenuAnalysisOptions,
+  ): Promise<MenuAnalysisResponse> {
     throw new Error("Method not implemented.");
   }
 
   getPrompt(language: string): string {
-    return new MenuAnalysisPrompt().generate(language);
+    throw new Error("Method not implemented.");
   }
 }
