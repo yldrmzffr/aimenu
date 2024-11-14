@@ -69,6 +69,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
               "pt-px",
               "px-0",
               "mx-0",
+              "mr-5",
             ],
             classNames?.wrapper,
           ),
