@@ -31,6 +31,7 @@ export default function MenuDetailPage() {
 
   const chat = useMenuChat(menuId, menuItems);
 
+  // Todo: router replace
   useEffect(() => {
     chat.setIsOpen(chatOpen === "true");
   }, [chatOpen]);
@@ -92,7 +93,7 @@ export default function MenuDetailPage() {
           </Button>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold  bg-clip-text text-transparent header animated">
               {t("menuItems")}
             </h1>
             <MenuSearch value={searchQuery} onChange={setSearchQuery} />
