@@ -81,7 +81,7 @@ export default function MenuDetailPage() {
   return (
     <DefaultLayout>
       <div className="max-w-[1200px] mx-auto min-h-screen pb-20">
-        <header className="sticky top-0 bg-background/80 backdrop-blur-md z-40 px-4 pt-4 border-b">
+        <header className="sticky top-0 bg-background/80 backdrop-blur-md z-40 px-4 pt-4 border-b border-default-200">
           <Button
             className="font-medium mb-4"
             color="primary"

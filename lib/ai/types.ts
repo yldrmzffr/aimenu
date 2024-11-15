@@ -22,6 +22,7 @@ export interface MenuAnalysisOptions {
 export interface FileAnalysisOptions {
   mimeType: "application/pdf" | "image/jpeg" | "image/png";
   fileBase64: string;
+  language: string;
   prompt: string;
   maxTokens?: number;
   temperature?: number;

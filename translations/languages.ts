@@ -42,6 +42,18 @@ export const Languages: LANGUAGE[] = [
     full: "日本語",
     flag: "🇯🇵",
   },
+  {
+    key: "hi",
+    label: "HI",
+    full: "हिन्दी",
+    flag: "🇮🇳",
+  },
+  {
+    key: "es",
+    label: "ES",
+    full: "Español",
+    flag: "🇪🇸",
+  },
 ];
 
 export const getLanguage = (key: string) => {

@@ -14,8 +14,9 @@ export function MenuSearch({ value, onChange }: MenuSearchProps) {
   return (
     <Input
       className="w-[200px]"
+      isClearable={true}
       placeholder={t("search")}
-      radius="full"
+      radius="lg"
       startContent={<Search size={18} />}
       value={value}
       variant="bordered"

@@ -64,6 +64,7 @@ export class Claude extends BaseAIProvider {
         fileBase64,
         maxTokens,
         temperature,
+        language,
         prompt: this.getPrompt(language),
         mimeType,
       });

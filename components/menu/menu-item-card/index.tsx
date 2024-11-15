@@ -15,10 +15,7 @@ export function MenuItemCard({ item, onAskBot }: MenuItemCardProps) {
   const { t } = useLocale();
 
   return (
-    <Card
-      isPressable
-      className="w-full hover:shadow-lg transition-all duration-200"
-    >
+    <Card isPressable className="w-full transition-all duration-200">
       <CardBody className="p-4">
         <div className="flex flex-col justify-between h-full min-h-[150px]">
           <div className="flex flex-col gap-2">

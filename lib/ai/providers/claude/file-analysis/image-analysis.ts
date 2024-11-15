@@ -13,6 +13,7 @@ export class ImageAnalysisStrategy implements FileAnalysisStrategy {
     maxTokens,
     temperature,
     prompt,
+    language,
   }: FileAnalysisOptions) {
     this.logger.debug("Analyzing image file with claude", {
       mimeType,
@@ -39,7 +40,7 @@ export class ImageAnalysisStrategy implements FileAnalysisStrategy {
             },
             {
               type: "text",
-              text: "Please analyze this menu and extract the menu items.",
+              text: `Please analyze this menu and extract the menu items. Translate to ${language}`,
             },
           ],
         },

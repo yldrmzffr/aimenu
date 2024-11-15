@@ -17,7 +17,7 @@ export default function IndexPage() {
 
   return (
     <DefaultLayout>
-      <div className="flex justify-center items-center min-h-[80vh] w-full px-4">
+      <div className="flex justify-center items-center min-h-[80vh] w-full px-4 animate-fade-in">
         <div className="w-full max-w-3xl space-y-6">
           <div className="text-center space-y-4 mb-8">
             <h1 className="text-4xl font-bold header animated">{t("title")}</h1>
