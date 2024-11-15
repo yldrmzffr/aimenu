@@ -17,7 +17,7 @@ export function ChatInput({
         <Input
           disabled={isLoading}
           placeholder={placeholder}
-          radius="full"
+          radius="md"
           value={inputMessage}
           variant="bordered"
           onChange={(e) => onInputChange(e.target.value)}
@@ -31,7 +31,7 @@ export function ChatInput({
           isIconOnly
           color="primary"
           isLoading={isLoading}
-          radius="full"
+          radius="md"
           onClick={onSubmit}
         >
           {!isLoading && <Send size={20} />}

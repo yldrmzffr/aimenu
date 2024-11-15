@@ -28,6 +28,7 @@ const API_ENDPOINTS = {
 export function useMenuChat(
   menuId: string,
   menuData: MenuItem[],
+  chatOpen?: boolean,
 ): ChatState & ChatActions {
   const { t } = useLocale();
   const abortControllerRef = useRef<AbortController>();

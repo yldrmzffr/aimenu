@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@nextui-org/button";
 import { ArrowLeft, BotMessageSquare } from "lucide-react";
@@ -21,12 +21,20 @@ interface CategoryGroup {
 export default function MenuDetailPage() {
   const router = useRouter();
   const { t } = useLocale();
-  const { id: menuId } = router.query as { id: string };
+  const { id: menuId, chatOpen } = router.query as {
+    id: string;
+    chatOpen: string;
+  };
   const { menuItems, isLoading: menuIsLoading } = useMenuData(menuId);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const chat = useMenuChat(menuId, menuItems);
+
+  useEffect(() => {
+    chat.setIsOpen(chatOpen === "true");
+  }, [chatOpen]);
+
   const { categories, groupedAndFilteredItems } = useMemo(() => {
     if (!menuItems || menuItems.length === 0) {
       return {

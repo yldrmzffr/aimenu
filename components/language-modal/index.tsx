@@ -22,6 +22,7 @@ export function LanguageModal({ onSelectLanguage }: LanguageModalProps) {
   return (
     <Modal
       hideCloseButton
+      backdrop="blur"
       isDismissable={false}
       isOpen={isOpen}
       size="md"

@@ -59,6 +59,7 @@ export function ChatModal({
   return (
     <Modal
       hideCloseButton
+      backdrop="blur"
       className="sm:!max-w-[600px] md:!max-w-[800px] sm:!h-[600px] sm:!m-4"
       isOpen={isOpen}
       onClose={onClose}

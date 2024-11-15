@@ -22,20 +22,14 @@ export class MenuAnalysisPrompt {
       - Include currency symbol in prices (e.g. $, €, £)
       
       Data Processing Rules:
-      - DO NOT generate or guess prep_time if not explicitly shown in the menu image
-      - DO NOT generate or guess calories if not explicitly shown in the menu image
-      - DO NOT generate or guess price if not explicitly shown in the menu image
+      - DO NOT generate or guess prep_time, calories and price if not explicitly shown in the menu image
       - If description/category is missing: You may add appropriate ones based on item context
       - If allergens are not explicitly listed: You may suggest based on ingredients
       - For any missing numerical fields (price, calories, prep_time): Leave completely empty (no "-")
       
       Translation Instructions:
       1. First identify and extract all menu items in original language
-      2. Translate the following to ${language.toUpperCase()}:
-         - Item names
-         - Descriptions
-         - Categories
-         - Allergens
+      2. Translate the all menu items to ${language.toUpperCase()} language
       3. Use consistent terminology for translated categories and allergens
       4. Maintain original price format and currency symbol
       5. Keep numbers (calories) in original format
