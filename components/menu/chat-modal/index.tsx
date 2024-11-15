@@ -60,11 +60,14 @@ export function ChatModal({
     <Modal
       hideCloseButton
       backdrop="blur"
-      className="sm:!max-w-[600px] md:!max-w-[800px] sm:!h-[600px] sm:!m-4"
+      classNames={{
+        base: "sm:!max-w-[600px] md:!max-w-[800px] sm:!h-[600px] sm:!m-4",
+        wrapper: "items-end sm:items-center",
+      }}
       isOpen={isOpen}
       onClose={onClose}
     >
-      <ModalContent className="h-[100dvh] sm:h-full">
+      <ModalContent className="h-screen max-h-[100dvh] sm:h-full flex flex-col">
         <ChatHeader
           clearChat={clearChat}
           subtitle={t("askAnythingAboutMenu")}
@@ -72,7 +75,7 @@ export function ChatModal({
           onClose={onClose}
         />
 
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col min-h-0">
           <ChatMessages isLoading={isLoading} messages={messages} />
 
           <ChatInput

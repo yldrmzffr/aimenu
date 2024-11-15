@@ -15,7 +15,6 @@ export function ChatInput({
     <div className="p-4 border-t bg-background">
       <div className="flex gap-2">
         <Input
-          disabled={isLoading}
           placeholder={placeholder}
           radius="md"
           value={inputMessage}
