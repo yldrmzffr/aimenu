@@ -22,8 +22,11 @@ const STORAGE_KEY = "locale";
 
 interface LocaleContextType {
   locale: SupportedLocale;
-  setLocale: (locale: string) => void;
+  setLocale: (locale: SupportedLocale) => void;
   t: (key: TranslationKey) => string;
+  availableLocales: SupportedLocale[];
+  isModalOpen: boolean;
+  setIsModalOpen: (open: boolean) => void;
 }
 
 interface LocaleProviderProps {
@@ -34,6 +37,9 @@ const LocaleContext = createContext<LocaleContextType>({
   locale: DEFAULT_LOCALE,
   setLocale: () => null,
   t: (key) => String(key),
+  availableLocales: [],
+  isModalOpen: false,
+  setIsModalOpen: () => null,
 });
 
 const useTranslation = (locale: SupportedLocale) => {
@@ -57,6 +63,7 @@ const isSupportedLocale = (locale: string): locale is SupportedLocale => {
 export function LocaleProvider({ children }: LocaleProviderProps) {
   const [locale, setLocale] = useState<SupportedLocale>(DEFAULT_LOCALE);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const initializeLocale = () => {
@@ -75,6 +82,7 @@ export function LocaleProvider({ children }: LocaleProviderProps) {
     if (isSupportedLocale(newLocale)) {
       setLocale(newLocale);
       localStorage.setItem(STORAGE_KEY, newLocale);
+      setIsModalOpen(false);
     }
   };
 
@@ -85,8 +93,11 @@ export function LocaleProvider({ children }: LocaleProviderProps) {
       locale,
       setLocale: handleSetLocale,
       t,
+      availableLocales: Object.keys(translations) as SupportedLocale[],
+      isModalOpen,
+      setIsModalOpen,
     }),
-    [locale, t],
+    [locale, t, isModalOpen],
   );
 
   if (isLoading) {
@@ -95,8 +106,12 @@ export function LocaleProvider({ children }: LocaleProviderProps) {
 
   return (
     <LocaleContext.Provider value={contextValue}>
-      <LanguageModal onSelectLanguage={handleSetLocale} />
       {children}
+      <LanguageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelectLanguage={handleSetLocale}
+      />
     </LocaleContext.Provider>
   );
 }

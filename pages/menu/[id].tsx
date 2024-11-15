@@ -139,6 +139,14 @@ export default function MenuDetailPage() {
             <div className="flex flex-col items-center justify-center py-12 text-default-500">
               <p className="text-xl font-medium">{t("noMenuItems")}</p>
               <p className="text-sm mt-2">{t("tryAgainWithNewImage")}</p>
+              <Button
+                className="mt-10"
+                color="default"
+                variant="flat"
+                onClick={() => router.push("/start")}
+              >
+                {t("backToHome")}
+              </Button>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr">

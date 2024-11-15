@@ -1,26 +1,21 @@
-import { useRouter } from "next/router";
-import { Link } from "@nextui-org/link";
+import { Button } from "@nextui-org/button";
 
 import { getLanguage } from "@/translations";
 import { useLocale } from "@/providers";
 
 export default function LanguageButton() {
-  const { locale } = useLocale();
-  const router = useRouter();
-
+  const { locale, setIsModalOpen } = useLocale();
   const language = getLanguage(locale);
 
   return (
-    <Link
-      color="primary"
+    <Button
+      color="default"
       size="sm"
-      onClick={() => {
-        // Todo: Refactor this to use the locale provider
-        localStorage.removeItem("locale");
-        router.reload();
-      }}
+      variant="light"
+      onClick={() => setIsModalOpen(true)}
     >
-      {language.flag} {language.full}
-    </Link>
+      <span className="text-xl">{language.flag}</span>
+      <p className="text-sm">{language.full}</p>
+    </Button>
   );
 }
