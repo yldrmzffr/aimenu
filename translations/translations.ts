@@ -13,7 +13,7 @@ export const translations = {
     search: "Search dishes...",
     menuAssistant: "AI Menu Guide",
     askAnythingAboutMenu:
-      "Have questions about a dish? Ask about ingredients, cooking methods, dietary restrictions, or anything else you'd like to know.",
+      "Ask about ingredients, dietary restrictions, or anything else you'd like to know.",
     askAboutMenu: "Ask Menu Assistant",
     chatWelcomeMessage:
       "Hello! I'm your AI menu assistant, ready to help you discover our delicious offerings. What would you like to know?",
@@ -54,7 +54,7 @@ export const translations = {
     search: "Yemeklerde ara...",
     menuAssistant: "Akıllı Menü Rehberi",
     askAnythingAboutMenu:
-      "Yemekler hakkında sorularınız mı var? Malzemeler, pişirme yöntemleri, diyet kısıtlamaları veya merak ettiğiniz her şeyi sorabilirsiniz.",
+      "Malzemeler, pişirme yöntemleri, diyet kısıtlamaları ve merak ettiğiniz her şeyi sorabilirsiniz.",
     askAboutMenu: "Menü Asistanına Sor",
     chatWelcomeMessage:
       "Merhaba! Ben sizin akıllı menü asistanınızım, lezzetli menümüzü keşfetmenize yardımcı olmak için buradayım. Ne öğrenmek istersiniz?",
@@ -95,7 +95,7 @@ export const translations = {
     search: "搜索菜品...",
     menuAssistant: "智能菜单指南",
     askAnythingAboutMenu:
-      "对菜品有疑问？可以询问配料、烹饪方法、饮食限制或任何想了解的信息。",
+      "可以询问配料、烹饪方法、饮食限制或任何想了解的信息。",
     askAboutMenu: "询问菜单助手",
     chatWelcomeMessage:
       "您好！我是您的智能菜单助手，随时为您介绍我们的美味菜品。您想了解什么？",
@@ -136,7 +136,7 @@ export const translations = {
     search: "البحث عن الأطباق...",
     menuAssistant: "دليل القائمة الذكي",
     askAnythingAboutMenu:
-      "لديك أسئلة عن طبق معين؟ اسأل عن المكونات، طرق الطهي، القيود الغذائية، أو أي شيء ترغب في معرفته.",
+      "اسأل عن المكونات، طرق الطهي، القيود الغذائية، أو أي شيء ترغب في معرفته.",
     askAboutMenu: "اسأل مساعد القائمة",
     chatWelcomeMessage:
       "مرحباً! أنا مساعد القائمة الذكي، جاهز لمساعدتك في اكتشاف أطباقنا اللذيذة. ماذا تود أن تعرف؟",
@@ -177,7 +177,7 @@ export const translations = {
     search: "料理を検索する...",
     menuAssistant: "AIメニューガイド",
     askAnythingAboutMenu:
-      "料理について気になることは何でも。材料、調理法、アレルギー情報まで、AIがお答えします。",
+      "材料、調理法、アレルギー情報まで、AIがお答えします。",
     askAboutMenu: "メニューについて質問する",
     chatWelcomeMessage:
       "いらっしゃいませ！美味しい料理の世界をご案内いたします。何かお知りになりたいことはありますか？",
@@ -219,8 +219,7 @@ export const translations = {
     capture: "कैप्चर करें",
     search: "व्यंजन खोजें...",
     menuAssistant: "एआई मेन्यू गाइड",
-    askAnythingAboutMenu:
-      "किसी भी व्यंजन के बारे में पूछें - सामग्री, पकाने की विधि, या पोषण संबंधी जानकारी।",
+    askAnythingAboutMenu: "सामग्री, पकाने की विधि, या पोषण संबंधी जानकारी।",
     askAboutMenu: "मेन्यू के बारे में पूछें",
     chatWelcomeMessage:
       "स्वागत है! हमारे स्वादिष्ट व्यंजनों की दुनिया में आपका स्वागत है। क्या जानना चाहेंगे आप?",
@@ -262,7 +261,7 @@ export const translations = {
     search: "Buscar platos...",
     menuAssistant: "Guía AI del Menú",
     askAnythingAboutMenu:
-      "¿Tienes dudas sobre algún plato? Pregunta lo que quieras: ingredientes, preparación, información nutricional y más.",
+      "Pregunta lo que quieras: ingredientes, preparación, información nutricional y más.",
     askAboutMenu: "Preguntar sobre el Menú",
     chatWelcomeMessage:
       "¡Bienvenido! Estoy aquí para guiarte por nuestro delicioso menú. ¿Qué te gustaría saber?",

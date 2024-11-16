@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/button";
-import { Trash, X } from "lucide-react";
+import { Trash, X, Bot } from "lucide-react";
 
 import { ChatHeaderProps } from "@/components/menu/chat-modal/types";
 
@@ -11,6 +11,7 @@ export function ChatHeader({
 }: ChatHeaderProps) {
   return (
     <div className="flex justify-between items-center border-b z-10 bg-background p-4">
+      <Bot className="ml-3 mr-5 size-9" />
       <div className="flex-1">
         <p className="text-lg font-bold">{title}</p>
         <p className="text-small text-default-500">{subtitle}</p>
