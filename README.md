@@ -65,7 +65,7 @@ AI Menu is a web application that leverages artificial intelligence to analyze a
 ### Project Structure
 ```
 ai-menu/
-├── components/          # Reusable UI components
+├── components/         # Reusable UI components
 │   ├── analyzing/      # Loading states
 │   ├── icons/          # SVG icons
 │   ├── menu/           # Menu-related components
@@ -84,6 +84,56 @@ ai-menu/
 ├── translations/      # Language files
 └── types/             # TypeScript definitions
 ```
+
+### Design Patterns
+
+#### Strategy Pattern
+- **Location:** `lib/ai/chat/chat-strategy.ts`
+- **Purpose:**
+    - Provides a common interface for different AI providers (Claude, OpenAI)
+    - Allows for provider-specific implementations
+    - Enables easy addition of new providers
+    - Maintains consistent chat behavior across different AI services
+
+#### Factory Pattern
+- **Location:** `lib/ai/service-factory.ts`
+- **Purpose:**
+    - Centralizes AI service creation
+    - Implements dependency injection principles
+    - Abstracts service creation logistics
+    - Simplifies service management and configuration
+
+#### Provider Pattern
+- **Location:** `providers/locale-provider.tsx`
+- **Purpose:**
+    - Manages global state for multi-language support
+    - Utilizes React Context API for state sharing
+    - Prevents prop drilling throughout component tree
+    - Centralizes language-related state management
+
+#### Singleton Pattern
+- **Location:** `lib/database/redis.ts`
+- **Purpose:**
+    - Manages single Redis connection instance
+    - Optimizes connection pool usage
+    - Ensures efficient resource utilization
+    - Prevents multiple database connections
+
+### State Management
+- **React Context:**
+    - Used for global state management
+    - Provides centralized state access
+    - Manages application-wide settings
+
+- **useState & useEffect:**
+    - Component-level state management
+    - Handles local UI states
+    - Manages component lifecycle
+
+- **Custom Hooks:**
+    - Abstracts complex state logic
+    - Promotes code reusability
+    - Simplifies component implementation
 
 ## Technical Documentation Links
 
