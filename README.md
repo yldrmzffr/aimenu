@@ -8,34 +8,77 @@
 
 ## Overview
 
-AI Menu is a web app that uses AI to analyze and translate restaurant menus. It can read menu images (JPG/PNG) and PDFs, turn them into structured data, and support multiple languages.
+AI Menu is a web application that leverages artificial intelligence to analyze and translate restaurant menus. It can process menu images (JPG/PNG) and PDFs, convert them into structured data, and support multiple languages with an interactive chat interface.
 
 🌐 **Demo:** [menu.muzaffer.dev](https://menu.muzaffer.dev)
 
 ## Features
 
+### Core Features
 - 📸 Menu image and PDF analysis
 - 🌍 Support for 8 languages
-- 💬 AI chat assistant
-- 🔍 Menu search and filtering
+- 💬 AI-powered chat assistant
+- 🔍 Smart search and filtering
 - ⚡ Real-time language switching
-- 🎨 Modern and responsive design
-
-## Core Features
-
-### Functionality
-- ✓ Extract and parse menu items
-- ✓ Card-based UI for menu items
-- ✓ Chat interface for menu questions
+- 🎨 Modern UI with dark/light theme
+- 📱 Responsive design
+- 🔄 Automatic categorization
+- ℹ️ Detailed menu information (prices, allergens, nutrition)
 
 ### Language Support
-- ✓ Process and respond in 8 languages
-- ✓ Auto language detection
+- English 🇬🇧
+- Turkish 🇹🇷
+- Chinese 🇨🇳
+- Arabic 🇸🇦
+- Russian 🇷🇺
+- Japanese 🇯🇵
+- Hindi 🇮🇳
+- Spanish 🇪🇸
 
-### Deployment
-- ✓ Deployed on Railway with timeout handling
-- ✓ Docker support for easy deployment
-- ✓ Demo URL: [menu.muzaffer.dev](https://menu.muzaffer.dev)
+## Technical Architecture
+
+### Tech Stack
+- **Frontend:**
+    - Next.js
+    - React
+    - TypeScript
+    - TailwindCSS
+    - NextUI Components
+    - Sonner (Toast notifications)
+
+- **Backend:**
+    - Next.js API Routes
+    - Redis Database
+    - Claude AI / OpenAI Integration
+    - File Processing System
+
+- **Infrastructure:**
+    - Railway Deployment
+    - Docker & Docker Compose
+    - Redis Cache
+
+### Project Structure
+```
+ai-menu/
+├── components/          # Reusable UI components
+│   ├── analyzing/      # Loading states
+│   ├── icons/          # SVG icons
+│   ├── menu/           # Menu-related components
+│   ├── navbar/         # Navigation
+│   └── theme-switch/   # Theme toggler
+├── config/             # App configuration
+├── hooks/              # Custom React hooks
+├── layouts/            # Page layouts
+├── lib/               
+│   ├── ai/            # AI service implementation
+│   ├── database/      # Database operations
+│   └── utils/         # Utility functions
+├── pages/             # Next.js pages & API routes
+├── providers/         # React context providers
+├── styles/            # Global styles
+├── translations/      # Language files
+└── types/             # TypeScript definitions
+```
 
 ## Technical Documentation Links
 
@@ -43,92 +86,32 @@ AI Menu is a web app that uses AI to analyze and translate restaurant menus. It 
     - AI service integrations
     - Strategy patterns
     - File analysis systems
+    - Chat implementation
 
 - [📗 Database Module Documentation](./lib/database/README.md)
     - Redis implementation
     - Data models
     - Performance optimizations
-
-## Tech Stack
-
-- **Frontend:** Next.js, TypeScript, TailwindCSS, NextUI
-- **Backend:** Next.js API Routes
-- **Database:** Redis
-- **AI Services:** Claude AI, OpenAI
-- **Deployment:** Railway, Docker
-- **Container:** Docker, Docker Compose
-
-## How to Use
-
-1. **Upload Menu**
-    - Upload menu image or PDF
-    - Supported: JPG, PNG, PDF
-
-2. **Choose Language**
-    - Select from 8 languages
-    - Top right corner
-
-3. **View Menu**
-    - Filter by category
-    - Search items
-    - View item details
-
-4. **Use AI Chat**
-    - Click bot icon (bottom right)
-    - Ask about menu
-    - Get dietary info
+    - Caching strategies
 
 ## API Documentation
 
 ### Endpoints
-
-- `POST /api/upload` - Upload and analyze menu
-- `POST /api/chat` - Chat with AI
-- `GET /api/menu/[id]` - Get menu details
-- `GET/DELETE /api/messages` - Manage chat
-
-
+```
+POST /api/upload       # Upload and analyze menu
+POST /api/chat        # Chat with AI assistant
+GET /api/menu/[id]    # Retrieve menu details
+GET/DELETE /api/messages  # Manage chat history
+```
 
 ## Setup
 
-There are three ways to run this application:
-1. Local Development
-2. Docker
-3. Docker Compose
-
-### Requirements
-
-#### Local Development
+### Prerequisites
 - Node.js (v18+)
 - Redis (v7+)
 - Claude AI / OpenAI API key
 
-#### Docker & Docker Compose
-- Docker Engine (20.10+)
-- Docker Compose v2
-- Claude AI / OpenAI API key
-
-### 1️⃣ Local Development Setup
-
-This setup is best for development and debugging.
-
-1. Clone repo:
-```bash
-git clone https://github.com/username/ai-menu.git
-cd ai-menu
-```
-
-2. Install packages:
-```bash
-npm install
-```
-
-3. Setup environment:
-```bash
-cp .env.example .env.local
-```
-
-4. Edit .env.local:
+### Environment Variables
 ```env
 # Required
 REDIS_URL=redis://localhost:6379
@@ -139,43 +122,33 @@ NODE_ENV=development
 PORT=3000
 ```
 
-5. Start development server:
+### Installation Methods
+
+#### 1. Local Development
 ```bash
+# Clone repository
+git clone https://github.com/username/ai-menu.git
+cd ai-menu
+
+# Install dependencies
+npm install
+
+# Setup environment
+cp .env.example .env.local
+
+# Start development server
 npm run dev
 ```
 
-Visit `http://localhost:3000`
-
-### 2️⃣ Docker Setup
-
-This setup is good for single-container testing.
-
-1. Clone repo:
+#### 2. Docker Setup
 ```bash
-git clone https://github.com/username/ai-menu.git
-cd ai-menu
-```
-
-2. Setup environment:
-```bash
-cp .env.example .env
-```
-
-3. Build Docker image:
-```bash
+# Build image
 docker build -t ai-menu .
-```
 
-4. Start Redis container:
-```bash
-docker run -d \
-  --name redis \
-  -p 6379:6379 \
-  redis:7-alpine
-```
+# Start Redis
+docker run -d --name redis -p 6379:6379 redis:7-alpine
 
-5. Start app container:
-```bash
+# Start application
 docker run -d \
   --name ai-menu \
   --env-file .env \
@@ -184,26 +157,9 @@ docker run -d \
   ai-menu
 ```
 
-Visit `http://localhost:3000`
-
-### 3️⃣ Docker Compose Setup
-
-This setup is recommended for production and testing the full stack.
-
-1. Clone repo:
+#### 3. Docker Compose
 ```bash
-git clone https://github.com/username/ai-menu.git
-cd ai-menu
-```
-
-2. Setup environment:
-```bash
-cp .env.example .env
-```
-
-3. Start services:
-```bash
-# Start in detached mode
+# Start services
 docker-compose up -d
 
 # View logs
@@ -211,45 +167,42 @@ docker-compose logs -f
 
 # Stop services
 docker-compose down
-
-# Remove volumes
-docker-compose down -v
 ```
 
-Visit `http://localhost:3000`
+## Usage Guide
 
-## Project Structure
+1. **Upload Menu**
+    - Support for JPG, PNG, PDF formats
+    - Automatic menu item extraction
 
-```
-ai-menu/
-├── components/     # UI components
-├── lib/           # Core libraries
-│   ├── ai/        # AI services [📘 Docs]
-│   └── database/  # Database [📗 Docs]
-├── pages/         # Next.js pages
-├── providers/     # React providers
-├── styles/        # Global styles
-├── translations/  # Languages
-├── Dockerfile     # Docker build file
-└── docker-compose.yml  # Docker services
-```
+2. **Language Selection**
+    - Choose from 8 supported languages
+    - Real-time translation
+
+3. **Menu Navigation**
+    - Category-based filtering
+    - Search functionality
+    - Detailed item views
+
+4. **AI Assistant**
+    - Menu-specific queries
+    - Dietary information
+    - Item recommendations
 
 ## Deployment
 
-### Railway Deployment
-App runs on Railway. Commits to main branch auto-deploy.
+The application is deployed on Railway with automatic deployments from the main branch.
 
+### Production Build
 ```bash
-# Build
+# Build application
 npm run build
 
-# Start
+# Start production server
 npm start
 ```
 
 ### Docker Deployment
-App can be deployed using Docker:
-
 ```bash
 # Build images
 docker-compose build
