@@ -1,4 +1,9 @@
 # AI Menu - Smart Menu Assistant
+<div align="center">
+
+![AI Menu](public/cover.png)
+
+</div>
 
 <div align="center">
 
