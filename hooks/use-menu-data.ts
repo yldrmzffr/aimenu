@@ -21,7 +21,7 @@ const ROUTES = {
 } as const;
 
 const TIMEOUT_DURATION = 1000 * 40;
-const ARTIFICIAL_DELAY = 1000 * 3;
+const ARTIFICIAL_DELAY = 1000 * 1.5;
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 

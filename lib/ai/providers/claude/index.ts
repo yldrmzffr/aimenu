@@ -5,17 +5,17 @@ import { PdfAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/pdf
 import { ImageAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/image-analysis";
 import { FileAnalysisStrategy } from "@/lib/ai/providers/claude/file-analysis/file-analysis";
 import { MenuAnalysisPrompt } from "@/lib/ai/prompts/menu-analysis-prompt";
-import { csvToJson } from "@/lib//utils/cvs-json-parser";
 import { ClaudeChatStrategy } from "@/lib/ai/chat/providers/claude-chat";
 import { Logger } from "@/lib/utils/logger";
 import { MenuAnalysisOptions, MenuAnalysisResponse } from "@/lib/ai/types";
+import { csvToJson } from "@/lib/utils/cvs-json-parser";
 
 export class Claude extends BaseAIProvider {
   private readonly logger = new Logger("Claude");
 
   private fileAnalysisStrategies: Map<string, FileAnalysisStrategy>;
-  private readonly defaultMaxTokens = 1024;
-  private readonly defaultTemperature = 0.2;
+  private readonly defaultMaxTokens = 8192;
+  private readonly defaultTemperature = 0.1;
 
   constructor(apiKey: string) {
     const anthropic = new Anthropic({ apiKey });
