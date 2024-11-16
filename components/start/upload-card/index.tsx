@@ -14,7 +14,7 @@ export function UploadCard({ setIsLoading }: UploadCardProps) {
   const { isUploading, handleImageUpload, t } = useUpload(setIsLoading);
 
   return (
-    <Card className="border-2 border-dashed border-default-200 animate-ultra-soft-glow hover:scale-105">
+    <Card className="border-2 border-dashed border-default-200 animate-soft-glow hover:scale-105">
       <CardBody className="py-12">
         <div className="flex flex-col items-center gap-4">
           <BiCloudUpload className="text-primary" size={40} />

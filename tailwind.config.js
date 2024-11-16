@@ -79,6 +79,39 @@ module.exports = {
             boxShadow: '0 0 80px 40px rgba(75, 0, 130, 0.08)',
           },
         },
+        softGlow: {
+          '0%, 100%': {
+            boxShadow: '0 0 80px 40px rgba(75, 0, 130, 0.2)',
+          },
+            '10%': {
+                boxShadow: '0 0 80px 40px rgba(106, 90, 205, 0.2)',
+            },
+            '20%': {
+                boxShadow: '0 0 80px 40px rgba(123, 104, 238, 0.2)',
+            },
+            '30%': {
+                boxShadow: '0 0 80px 40px rgba(138, 43, 226, 0.2)',
+            },
+            '40%': {
+                boxShadow: '0 0 80px 40px rgba(147, 112, 219, 0.2)',
+            },
+            '50%': {
+                boxShadow: '0 0 80px 40px rgba(100, 149, 237, 0.2)',
+            },
+            '60%': {
+                boxShadow: '0 0 80px 40px rgba(65, 105, 225, 0.2)',
+            },
+            '70%': {
+                boxShadow: '0 0 80px 40px rgba(30, 144, 255, 0.2)',
+            },
+            '80%': {
+                boxShadow: '0 0 80px 40px rgba(106, 90, 205, 0.2)',
+            },
+            '90%': {
+              boxShadow: '0 0 80px 40px rgba(75, 0, 130, 0.2)',
+            },
+        },
+
       },
       animation: {
         'slide-up': 'slide-up 0.6s ease-in-out',
@@ -86,6 +119,7 @@ module.exports = {
         'fade-in': 'fade-in 0.5s ease-in-out',
         'bounce-light': 'bounce-light 1s infinite',
         'ultra-soft-glow': 'ultraSoftGlow 5s linear infinite',
+        'soft-glow': 'softGlow 10s linear infinite',
       }
     },
   },

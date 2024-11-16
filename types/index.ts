@@ -4,8 +4,6 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-// TODO: Define different types in separate files for better organization and maintainability
-
 export interface MenuItem {
   name: string;
   description: string;

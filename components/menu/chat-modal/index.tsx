@@ -61,8 +61,8 @@ export function ChatModal({
       hideCloseButton
       backdrop="blur"
       classNames={{
-        base: "sm:!max-w-[600px] md:!max-w-[800px] sm:!h-[600px] sm:!m-4",
-        wrapper: "items-end sm:items-center",
+        base: "sm:!max-w-[600px] md:!max-w-[800px] sm:!h-[600px] sm:!m-4 animate-soft-glow",
+        wrapper: "items-end sm:items-center ",
       }}
       isOpen={isOpen}
       onClose={onClose}

@@ -93,7 +93,7 @@ export default function MenuDetailPage() {
           </Button>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-            <h1 className="text-3xl font-bold  bg-clip-text text-transparent header animated">
+            <h1 className="text-3xl font-bold  bg-clip-text text-transparent header">
               {t("menuItems")}
             </h1>
             <MenuSearch value={searchQuery} onChange={setSearchQuery} />
@@ -163,7 +163,7 @@ export default function MenuDetailPage() {
 
         <Button
           isIconOnly
-          className="fixed bottom-6 right-6 z-50 shadow-lg hover:shadow-xl transition-shadow"
+          className="fixed bottom-6 right-6 z-50 shadow-lg hover:shadow-xl transition-shadow animate-soft-glow"
           color="primary"
           radius="md"
           size="lg"
