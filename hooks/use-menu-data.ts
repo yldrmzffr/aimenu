@@ -20,7 +20,10 @@ const ROUTES = {
   START: "/start",
 } as const;
 
-const TIMEOUT_DURATION = 1000 * 30; // 30 seconds
+const TIMEOUT_DURATION = 1000 * 40;
+const ARTIFICIAL_DELAY = 1000 * 3;
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export function useMenuData(menuId: string | undefined) {
   const router = useRouter();
@@ -46,6 +49,9 @@ export function useMenuData(menuId: string | undefined) {
       const timeoutId = setTimeout(() => controller.abort(), timeout);
 
       try {
+        // Add artificial delay
+        await sleep(ARTIFICIAL_DELAY);
+
         const response = await fetch(url, {
           ...options,
           signal: controller.signal,
